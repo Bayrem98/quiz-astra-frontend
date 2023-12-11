@@ -9,7 +9,7 @@ function Navbard() {
         <NavbarBrand>Quiz-App</NavbarBrand>
         <div style={{ marginRight: 600 }}>
           <NavLink
-            to={"/"}
+            to={"/acceuil"}
             style={{
               textDecoration: "none",
               color: "white",
