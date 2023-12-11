@@ -1,10 +1,33 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import QuestionsTable from "./components/questions-admin/QuestionsTable";
+import QuizPage from "./components/pages/QuizPage";
+import Navbard from "./components/parts/Navbard";
+import { Route, Routes } from "react-router-dom";
+import Accueil from "./components/pages/Acceuil";
+
+enum WebsiteRoute {
+  HOME = "/",
+  QUESTIONS_TABLE = "/questionstable",
+  QUIZ_PAGE_CATEG = "/quizpage/:categ",
+}
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <>
+      <Navbard />
+      <div>
+        <Routes>
+          <Route path={WebsiteRoute.HOME} element={<Accueil />} />
+          <Route
+            path={WebsiteRoute.QUESTIONS_TABLE}
+            element={<QuestionsTable />}
+          />
+          <Route path={WebsiteRoute.QUIZ_PAGE_CATEG} element={<QuizPage />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
