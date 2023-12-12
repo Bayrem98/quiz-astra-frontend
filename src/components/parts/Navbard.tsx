@@ -106,7 +106,7 @@ function Navbard() {
 
   const logoutAdmin = () => {
     Cookies.remove("access_token");
-    navigate("/acceuil");
+    navigate("/accueil");
     window.location.reload();
   };
 
@@ -118,10 +118,10 @@ function Navbard() {
         dark
         style={{ position: "relative", top: 0 }}
       >
-        <NavbarBrand>Quiz-App</NavbarBrand>
+        <NavbarBrand href="#">Quiz-App</NavbarBrand>
         <div className="d-flex justify-content" style={{ marginLeft: -200 }}>
           <NavLink
-            to={"/acceuil"}
+            to={"/accueil"}
             style={{
               textDecoration: "none",
               color: "white",
