@@ -2,19 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Question from "../../@types/Question";
 import { getQuestions } from "../../actions/Questions/action";
-import { Card, CardBody, CardHeader } from "reactstrap";
+import { Button, Card, CardBody, CardHeader } from "reactstrap";
 
 const QuizPage = () => {
   let { categ } = useParams();
   const [Questions, setQuestions] = useState<Question[]>([]);
+  const [selectedAnswers, setSelectedAnswers] = useState<{
+    [key: string]: string;
+  }>({});
 
   useEffect(() => {
     getQuestions({ category: categ }, setQuestions);
   }, [categ]);
 
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
-    // Vous pouvez ajouter votre logique pour gérer la sélection de réponse ici
-    console.log(`Question ${questionId} - Selected answer: ${selectedAnswer}`);
+    setSelectedAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionId]: selectedAnswer,
+    }));
+  };
+
+  const handleSaveAnswers = () => {
+    // Vous pouvez ajouter la logique pour enregistrer les réponses ici
+    console.log("Réponses enregistrées :", selectedAnswers);
   };
 
   return (
@@ -85,6 +95,10 @@ const QuizPage = () => {
                 </p>
               </div>
             )}
+            {/* Bouton d'enregistrement des réponses */}
+            <Button color="primary" onClick={handleSaveAnswers}>
+              Enregistrer les réponses
+            </Button>
           </CardBody>
         </Card>
       </div>

@@ -27,7 +27,7 @@ function Login() {
         password,
       })
       .then(({ data }) => {
-        localStorage.getItem("access_token");
+        localStorage.setItem("access_token", data.access_token);
         window.location.reload();
         navigateto();
         console.log(data);
