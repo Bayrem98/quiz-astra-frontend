@@ -23,9 +23,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import Cookies from "js-cookie";
 
-
 function Navbard() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -44,8 +42,6 @@ function Navbard() {
     setPassword(e.target.value);
 
   const navigate = useNavigate();
-
-  const toggle = () => setIsOpen(!isOpen);
 
   const toggleModal = (e: any) => {
     setIsOpened(!isOpened);
@@ -146,18 +142,6 @@ function Navbard() {
           >
             Profil
           </NavLink>
-          <span
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: 18,
-              marginRight: 100,
-              cursor: "pointer",
-            }}
-            onClick={toggleModal}
-          >
-            Admin-Session
-          </span>
 
           {Cookies.get("access_token") ? (
             <>
@@ -185,10 +169,28 @@ function Navbard() {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <button onClick={logoutAdmin}>Logout-Admin</button>
+              <button
+                style={{ marginLeft: 10, border: 0 }}
+                onClick={logoutAdmin}
+              >
+                Logout-Admin
+              </button>
             </>
           ) : (
-            <> </>
+            <>
+              <span
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  fontSize: 18,
+                  marginRight: 100,
+                  cursor: "pointer",
+                }}
+                onClick={toggleModal}
+              >
+                Admin-Session
+              </span>
+            </>
           )}
         </div>
         <NavLink

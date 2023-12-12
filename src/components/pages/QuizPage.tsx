@@ -14,6 +14,7 @@ const QuizPage = () => {
   useEffect(() => {
     getQuestions({ category: categ }, setQuestions);
   }, [categ]);
+  console.log(Questions);
 
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
     setSelectedAnswers((prevAnswers) => ({

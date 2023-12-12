@@ -16,6 +16,21 @@ export function getUsers(callback: (data: User[]) => void) {
     });
 }
 
+export function getUser(id: string, callback: (data: User) => void) {
+  axios
+    .get(`http://localhost:3000/user/` + id, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    })
+    .then(({ data }) => {
+      callback(data);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
+
 export function addUser(user: User, callback: () => void) {
   axios
     .post(`http://localhost:3000/user`, user)
