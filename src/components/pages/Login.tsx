@@ -46,7 +46,7 @@ function Login() {
   };
 
   const navigateto = () => {
-    window.location.replace("/acceuil");
+    window.location.replace("/home");
   };
 
   const eye = <FontAwesomeIcon icon={faEye} />;

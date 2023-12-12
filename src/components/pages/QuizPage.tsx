@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import Question from "../../@types/Question";
 import { getQuestions } from "../../actions/Questions/action";
 import { Button, Card, CardBody, CardHeader } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 
 const QuizPage = () => {
   let { categ } = useParams();
@@ -91,11 +93,17 @@ const QuizPage = () => {
               ))
             ) : (
               <div>
-                <p className="text-center p-5" style={{ color: "#0e0e0ee7" }}>
-                  No data in table...
-                </p>
+                <td
+                  className="text-center"
+                  style={{ position: "relative", left: 500 }}
+                >
+                  <FontAwesomeIcon icon={faBoxOpen} size="8x" />
+                  <br />
+                  Pas des données...
+                </td>
               </div>
             )}
+            <br />
             {/* Bouton d'enregistrement des réponses */}
             <Button color="primary" onClick={handleSaveAnswers}>
               Enregistrer les réponses

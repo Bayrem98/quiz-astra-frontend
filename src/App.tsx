@@ -11,14 +11,16 @@ import Profil from "./components/pages/Profil";
 import AdminusersTable from "./components/adminuser-admin/AdminuserTable";
 import Cookies from "js-cookie";
 import AccueilQuiz from "./components/pages/AcceuilQuiz";
+import Home from "./components/pages/Home";
 
 enum WebsiteRoute {
   LOGIN = "/",
-  HOME = "/accueil",
+  HOME = "/home",
+  HOME_QUIZ = "/accueilquiz",
   QUESTIONS_TABLE = "/questionstable",
   ADMINUSERS_TABLE = "/adminuserstable",
   USERS_TABLE = "/userstable",
-  QUIZ_PAGE_CATEG = "/accueil/quizpage/:categ",
+  QUIZ_PAGE_CATEG = "/accueilquiz/quizpage/:categ",
   PROFIL = "/profil",
 }
 
@@ -34,7 +36,8 @@ function App() {
           <Navbard />
           <div>
             <Routes>
-              <Route path={WebsiteRoute.HOME} element={<AccueilQuiz />} />
+              <Route path={WebsiteRoute.HOME} element={<Home />} />
+              <Route path={WebsiteRoute.HOME_QUIZ} element={<AccueilQuiz />} />
               <Route
                 path={WebsiteRoute.QUIZ_PAGE_CATEG}
                 element={<QuizPage />}
