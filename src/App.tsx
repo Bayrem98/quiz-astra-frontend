@@ -21,7 +21,7 @@ enum WebsiteRoute {
   ADMINUSERS_TABLE = "/adminuserstable",
   USERS_TABLE = "/userstable",
   QUIZ_PAGE_CATEG = "/accueilquiz/quizpage/:categ",
-  PROFIL = "/profil",
+  PROFIL = "/profil/:userId",
 }
 
 function App() {

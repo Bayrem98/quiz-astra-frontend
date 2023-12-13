@@ -1,7 +1,20 @@
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
+import User from "../../@types/User";
+import { getUser } from "../../actions/Users/action";
+import { useParams } from "react-router-dom";
 
 const Profil = () => {
-  return (
+  let { userId } = useParams();
+  const [user, setUser] = useState<User>();
+
+  useEffect(() => {
+    if (userId) {
+      getUser(userId, setUser);
+    }
+  }, [userId]);
+
+  return user ? (
     <>
       <div
         className="d-flex justify-content-center"
@@ -16,7 +29,7 @@ const Profil = () => {
         <div>
           <Card style={{ width: 500, height: "100%" }}>
             <CardHeader style={{ textAlign: "center" }}>
-              Nom d'utilisateur: "username"
+              Nom d'utilisateur: {user.username}
             </CardHeader>
             <CardBody>
               <div>
@@ -48,6 +61,8 @@ const Profil = () => {
         </div>
       </div>
     </>
+  ) : (
+    <></>
   );
 };
 

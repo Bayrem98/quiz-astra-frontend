@@ -5,6 +5,7 @@ import { getQuestions } from "../../actions/Questions/action";
 import { Button, Card, CardBody, CardHeader } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const QuizPage = () => {
   let { categ } = useParams();
@@ -16,7 +17,6 @@ const QuizPage = () => {
   useEffect(() => {
     getQuestions({ category: categ }, setQuestions);
   }, [categ]);
-  console.log(Questions);
 
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
     setSelectedAnswers((prevAnswers) => ({
@@ -26,15 +26,50 @@ const QuizPage = () => {
   };
 
   const handleSaveAnswers = () => {
-    // Vous pouvez ajouter la logique pour enregistrer les réponses ici
-    console.log("Réponses enregistrées :", selectedAnswers);
+    // Obtenez le token d'authentification depuis le stockage local
+    const accessToken = localStorage.getItem("access_token");
+
+    // Vérifiez si le token est disponible
+    if (accessToken) {
+      // Ajoutez le token dans l'en-tête de la requête
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+
+      // Obtenez l'ID de l'utilisateur connecté (si disponible)
+      const userId = localStorage.getItem("user_id");
+
+      // Vérifiez si l'ID de l'utilisateur est disponible
+      if (userId) {
+        // Envoyez les réponses avec l'ID de l'utilisateur
+        axios
+          .post(`http://localhost:3000/user/${userId}/save-answers`, {
+            quizResponses: [selectedAnswers],
+          })
+          .then((response) => {
+            console.log("Réponses enregistrées :", response.data);
+          })
+          .catch((error) => {
+            console.error(
+              "Erreur lors de l'enregistrement des réponses :",
+              error
+            );
+          });
+      } else {
+        console.error(
+          "ID de l'utilisateur manquant. L'utilisateur n'est pas connecté."
+        );
+      }
+    } else {
+      console.error(
+        "Token d'authentification manquant. L'utilisateur n'est pas connecté."
+      );
+    }
   };
 
   return (
     <>
       <div>
-        <Card>
-          <CardHeader>
+        <Card style={{ marginLeft: 100, marginRight: 100, marginTop: 50 }}>
+          <CardHeader style={{ textAlign: "center" }}>
             Test-QCM: Il faut cocher la bonne réponse pour chaque question.
           </CardHeader>
           <CardBody>
@@ -93,14 +128,14 @@ const QuizPage = () => {
               ))
             ) : (
               <div>
-                <td
+                <span
                   className="text-center"
-                  style={{ position: "relative", left: 500 }}
+                  style={{ position: "relative", left: 400 }}
                 >
                   <FontAwesomeIcon icon={faBoxOpen} size="8x" />
                   <br />
                   Pas des données...
-                </td>
+                </span>
               </div>
             )}
             <br />

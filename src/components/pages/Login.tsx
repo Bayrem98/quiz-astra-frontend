@@ -27,7 +27,11 @@ function Login() {
         password,
       })
       .then(({ data }) => {
-        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("access_token", data.user.username);
+
+        // Stockez également l'ID de l'utilisateur
+        localStorage.setItem("user_id", data.user._id);
+
         window.location.reload();
         navigateto();
         console.log(data);

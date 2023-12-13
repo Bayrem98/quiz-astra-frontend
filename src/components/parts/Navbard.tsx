@@ -100,6 +100,7 @@ function Navbard() {
 
   const logout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("user_id");
     navigate("/");
     window.location.reload();
   };
@@ -109,6 +110,8 @@ function Navbard() {
     navigate("/home");
     window.location.reload();
   };
+
+  const userId = localStorage.getItem("user_id");
 
   return (
     <div>
@@ -132,7 +135,7 @@ function Navbard() {
             Accueil
           </NavLink>
           <NavLink
-            to={"/profil"}
+            to={`/profil/${userId}`}
             style={{
               textDecoration: "none",
               color: "white",
