@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Question from "../../@types/Question";
 import { getQuestions } from "../../actions/Questions/action";
 import { Button, Card, CardBody, CardHeader } from "reactstrap";
@@ -63,12 +63,24 @@ const QuizPage = () => {
         "Token d'authentification manquant. L'utilisateur n'est pas connecté."
       );
     }
+    navigateto("/accueilquiz");
   };
+
+  const navigateto = useNavigate();
+
+  const navigate = useNavigate();
 
   return (
     <>
-      <div>
-        <Card style={{ marginLeft: 100, marginRight: 100, marginTop: 50 }}>
+      <div style={{ marginLeft: 30, marginRight: 30, marginTop: 10 }}>
+        <img
+          src="/image/pngwing.com.png"
+          alt="."
+          width={40}
+          onClick={() => navigate(-1)}
+          style={{ cursor: "pointer" }}
+        />
+        <Card>
           <CardHeader style={{ textAlign: "center" }}>
             Test-QCM: Il faut cocher la bonne réponse pour chaque question.
           </CardHeader>
