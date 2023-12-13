@@ -41,7 +41,7 @@ const QuizPage = () => {
       if (userId) {
         // Envoyez les réponses avec l'ID de l'utilisateur
         axios
-          .post(`http://localhost:3000/user/${userId}/save-answers`, {
+          .post(`http://localhost:3000/user/saveanswers/${userId}`, {
             quizResponses: [selectedAnswers],
           })
           .then((response) => {
