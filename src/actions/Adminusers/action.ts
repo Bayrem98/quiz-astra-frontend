@@ -16,6 +16,21 @@ export function getAdminusers(callback: (data: Adminuser[]) => void) {
     });
 }
 
+export function getAdminuser(id: string, callback: (data: Adminuser) => void) {
+  axios
+    .get(`http://localhost:3000/adminuser/` + id, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      },
+    })
+    .then(({ data }) => {
+      callback(data);
+    })
+    .catch((e) => {
+      console.error(e);
+    });
+}
+
 export function addAdminuser(adminuser: Adminuser, callback: () => void) {
   axios
     .post(`http://localhost:3000/adminuser`, adminuser)
