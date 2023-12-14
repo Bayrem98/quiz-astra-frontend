@@ -48,7 +48,7 @@ function App() {
         </>
       )}
 
-      {Cookies.get("access_token") && (
+      {Cookies.get("access_token") && localStorage.getItem("access_token") && (
         <>
           <Routes>
             <Route

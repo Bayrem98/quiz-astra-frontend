@@ -4,12 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { Alert } from "antd";
+import { v4 as uuidv4 } from "uuid";
+import Cookies from "js-cookie";
 
 function Login() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -19,18 +22,40 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const login = (event: any) => {
+  const generateRandomTokenValue = () => {
+    const token = uuidv4();
+    return token;
+  };
+
+  const token = generateRandomTokenValue();
+
+  const toggleRole = () => {
+    setIsAdmin((prevIsAdmin) => !prevIsAdmin);
+  };
+
+  const login = (event: any, isAdmin: boolean) => {
     event.preventDefault();
+
+    const authEndpoint = isAdmin ? "logina" : "login";
+
     axios
-      .post(`http://localhost:3000/auth/login`, {
+      .post(`http://localhost:3000/auth/${authEndpoint}`, {
         username,
         password,
       })
       .then(({ data }) => {
+        // Gérer le stockage en fonction de l'utilisateur
         localStorage.setItem("access_token", data.user.username);
-
-        // Stockez également l'ID de l'utilisateur
         localStorage.setItem("user_id", data.user._id);
+
+        // Pour les administrateurs, utilisez Cookies
+        if (isAdmin) {
+          Cookies.set(
+            "access_token",
+            token,
+            { expires: 1 / 24 } // 1 heure (1/24 de la journée)
+          );
+        }
 
         window.location.reload();
         navigateto();
@@ -101,11 +126,20 @@ function Login() {
                   showIcon
                 />
               )}
-
+              <br />
+              <Input
+                type="select"
+                value={isAdmin ? "admin" : "user"}
+                onChange={toggleRole}
+                style={{ width: 160 }}
+              >
+                <option value="user">Utilisateur</option>
+                <option value="admin">Administrateur</option>
+              </Input>
               <h2 style={{ color: "black", textAlign: "center" }}>
                 Connectez-vous
               </h2>
-              <Form onSubmit={(event) => login(event)}>
+              <Form onSubmit={(event) => login(event, isAdmin)}>
                 <FormGroup style={{ paddingLeft: 95 }}>
                   <Label style={{ color: "black" }}>
                     <FontAwesomeIcon
@@ -162,7 +196,10 @@ function Login() {
                     type="submit"
                     disabled={!username || !password}
                   >
-                    <span style={{ color: "black" }}>Valider</span>
+                    <span style={{ color: "black" }}>
+                      Valider en tant que{" "}
+                      {isAdmin ? "administrateur" : "utilisateur"}
+                    </span>
                   </Button>
                 </FormGroup>
               </Form>
