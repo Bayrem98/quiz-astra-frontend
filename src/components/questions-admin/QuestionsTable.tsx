@@ -31,6 +31,7 @@ const QuestionsTable = (props: Props) => {
           <thead className="Questionstable-table-thead">
             <tr>
               <th>Categorie</th>
+              <th>Quiz-Type</th>
               <th>Question</th>
               <th>correct_answer</th>
               <th>incorrect_answer</th>
@@ -42,6 +43,7 @@ const QuestionsTable = (props: Props) => {
               Questions.map((question) => (
                 <tr className="Questionstable-table-tbody" key={question._id}>
                   <td>{question.category}</td>
+                  <td>{question.quizType}</td>
                   <td>{question.question}</td>
                   <td>{question.correct_answer}</td>
                   <td>

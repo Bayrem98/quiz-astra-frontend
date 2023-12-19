@@ -17,10 +17,16 @@ interface QuestionAddPropsType {
 }
 
 const fieldss = [
-  { key: "numerolo", name: "Numérologie" },
-  { key: "astro", name: "Astrologie" },
-  { key: "taro", name: "Tarologie" },
-  { key: "cult", name: "Culture-général" },
+  { key: "numerologie", name: "Numérologie" },
+  { key: "astrologie", name: "Astrologie" },
+  { key: "tarologie", name: "Tarologie" },
+  { key: "culturegeneral", name: "Culture-général" },
+];
+
+const fields = [
+  { key: "qcm", name: "QCM" },
+  { key: "vraifaux", name: "Vrai ou Faux" },
+  { key: "questionreponse", name: "Question/Reponse" },
 ];
 
 const QuestionAdd = (props: QuestionAddPropsType) => {
@@ -28,6 +34,7 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
 
   // form states
   const [category, setCategory] = useState<string>(fieldss[0].key);
+  const [quizType, setQuizType] = useState<string>(fields[0].key);
   const [question, setQuestion] = useState<string>("");
   const [correct_answer, setCorrect_answer] = useState<string>("");
   const [incorrect_answer1, setIncorrect_answer1] = useState<string>("");
@@ -36,6 +43,7 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
   const submit = () => {
     const newQuestion = {
       category,
+      quizType,
       question,
       correct_answer,
       incorrect_answer1,
@@ -52,6 +60,7 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
 
   const reset = () => {
     setCategory(fieldss[0].key);
+    setQuizType(fields[0].key);
     setQuestion("");
     setCorrect_answer("");
     setIncorrect_answer1("");
@@ -95,6 +104,24 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
               </Input>
               <Label className="addQuestion-modal-input-label" for="category">
                 La categorie de la question
+              </Label>
+            </FormGroup>
+            <FormGroup floating>
+              <Input
+                value={quizType}
+                id="quizType"
+                name="quizType"
+                type="select"
+                onChange={(e) => setQuizType(e.target.value)}
+              >
+                {fields.map((f) => (
+                  <option key={f.key} value={f.key}>
+                    {f.name}
+                  </option>
+                ))}
+              </Input>
+              <Label className="addQuestion-modal-input-label" for="quizType">
+                La type de quiz
               </Label>
             </FormGroup>
             <FormGroup floating>

@@ -4,6 +4,7 @@ export const questions: Question[] = [
   {
     _id: "32323",
     category: "Astrologie",
+    quizType: "QCM",
     question: "vous avez ne le 26 juillet quelle est votre signe astrologie:",
     correct_answer: "Lion",
     incorrect_answer1: "Belier",
@@ -12,6 +13,7 @@ export const questions: Question[] = [
   {
     _id: "32323",
     category: "Astrologie",
+    quizType: "QCM",
     question: "vous avez ne le 26 juillet quelle est votre signe astrologie:",
     correct_answer: "Lion",
     incorrect_answer1: "Belier",
@@ -20,6 +22,7 @@ export const questions: Question[] = [
   {
     _id: "32323",
     category: "Astrologie",
+    quizType: "QCM",
     question: "vous avez ne le 26 juillet quelle est votre signe astrologie:",
     correct_answer: "Lion",
     incorrect_answer1: "Belier",
@@ -28,6 +31,7 @@ export const questions: Question[] = [
   {
     _id: "32323",
     category: "Astrologie",
+    quizType: "QCM",
     question: "vous avez ne le 26 juillet quelle est votre signe astrologie:",
     correct_answer: "Lion",
     incorrect_answer1: "Belier",
@@ -36,6 +40,7 @@ export const questions: Question[] = [
   {
     _id: "32323",
     category: "Astrologie",
+    quizType: "QCM",
     question: "vous avez ne le 26 juillet quelle est votre signe astrologie:",
     correct_answer: "Lion",
     incorrect_answer1: "Belier",

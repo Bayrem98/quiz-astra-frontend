@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Question from "../../@types/Question";
 import { getQuestions } from "../../actions/Questions/action";
-import { Button, Card, CardBody, CardHeader } from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import QuizResponse from "../../@types/QuizResponse";
 
-const QuizPage = () => {
+const QuizPageQrTest = () => {
   let { categ } = useParams();
-  const [Questions, setQuestions] = useState<Question[]>([]);
+  let { quizTy } = useParams();
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
 
   useEffect(() => {
-    getQuestions({ category: categ }, setQuestions);
-  }, [categ]);
+    getQuestions({ category: categ, quizType: quizTy }, setQuestions);
+  }, [categ, quizTy]);
 
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
     setSelectedAnswers((prevAnswers) => ({
@@ -39,10 +41,31 @@ const QuizPage = () => {
 
       // Vérifiez si l'ID de l'utilisateur est disponible
       if (userId) {
-        // Envoyez les réponses avec l'ID de l'utilisateur
+        const storedResponsesString = localStorage.getItem("quiz_responses");
+        const previousResponses = storedResponsesString
+          ? JSON.parse(storedResponsesString)
+          : [];
+
+        const quizResponses: QuizResponse[] = Object.keys(selectedAnswers).map(
+          (questionId) => ({
+            _id: questionId, // ou générer un nouvel identifiant unique selon votre logique
+            quizType: quizTy,
+            category: categ,
+            question: questionId, // Assurez-vous que questionId est correct
+            value: selectedAnswers[questionId],
+          })
+        );
+
+        // Ajoutez les nouvelles réponses aux réponses précédentes
+        const allResponses = [...previousResponses, ...quizResponses];
+
+        // Stockez toutes les réponses dans le stockage local
+        localStorage.setItem("quiz_responses", JSON.stringify(allResponses));
+
+        // Envoyez toutes les réponses avec l'ID de l'utilisateur
         axios
           .post(`http://localhost:3000/user/saveanswers/${userId}`, {
-            quizResponses: [selectedAnswers],
+            quizResponses: allResponses,
           })
           .then((response) => {
             console.log("Réponses enregistrées :", response.data);
@@ -82,59 +105,26 @@ const QuizPage = () => {
         />
         <Card>
           <CardHeader style={{ textAlign: "center" }}>
-            Test-QCM: Il faut cocher la bonne réponse pour chaque question.
+            Test-Question et reponse: Il faut repondre dans la case pour chaque
+            question.
           </CardHeader>
           <CardBody>
-            {Array.isArray(Questions) && Questions.length ? (
-              Questions.map((question) => (
+            {Array.isArray(questions) && questions.length ? (
+              questions.map((question) => (
                 <div className="Questionstable-table-tbody" key={question._id}>
                   <p>*-{question.question}</p>
-                  <h6>Les réponses:</h6>
-                  {/* Bouton radio pour la première réponse incorrecte */}
-                  <label>
-                    <input
-                      type="radio"
-                      name={`question_${question._id}`}
-                      value={question.incorrect_answer1}
-                      onChange={() =>
-                        handleRadioChange(
-                          question._id,
-                          question.incorrect_answer1
-                        )
-                      }
-                    />
-                    {question.incorrect_answer1}
-                  </label>
-                  <br />
+                  <h6>La réponse:</h6>
                   {/* Bouton radio pour la réponse correcte */}
                   <label>
-                    <input
-                      type="radio"
+                    <Input
+                      type="textarea"
                       name={`question_${question._id}`}
-                      value={question.correct_answer}
-                      onChange={() =>
-                        handleRadioChange(question._id, question.correct_answer)
+                      onChange={(e) =>
+                        handleRadioChange(question._id, e.target.value)
                       }
+                      style={{ width: 500 }}
                     />
-                    {question.correct_answer}
                   </label>
-                  <br />
-                  {/* Bouton radio pour la deuxième réponse incorrecte */}
-                  <label>
-                    <input
-                      type="radio"
-                      name={`question_${question._id}`}
-                      value={question.incorrect_answer2}
-                      onChange={() =>
-                        handleRadioChange(
-                          question._id,
-                          question.incorrect_answer2
-                        )
-                      }
-                    />
-                    {question.incorrect_answer2}
-                  </label>
-                  <br />
                   <br />
                 </div>
               ))
@@ -161,4 +151,4 @@ const QuizPage = () => {
     </>
   );
 };
-export default QuizPage;
+export default QuizPageQrTest;

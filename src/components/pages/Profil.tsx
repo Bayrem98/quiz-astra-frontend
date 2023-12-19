@@ -1,11 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardHeader } from "reactstrap";
 import User from "../../@types/User";
 import { getUser } from "../../actions/Users/action";
+import QuizResponse from "../../@types/QuizResponse";
 import { useParams } from "react-router-dom";
 
+const fields = [
+  { key: "qcm", name: "QCM" },
+  { key: "vraifaux", name: "Vrai ou Faux" },
+  { key: "questionreponse", name: "Question/Reponse" },
+];
+
 const Profil = () => {
-  let { userId } = useParams();
+  const { userId } = useParams();
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
@@ -32,30 +39,24 @@ const Profil = () => {
               Nom d'utilisateur: {user.username}
             </CardHeader>
             <CardBody>
-              <div>
-                <h6>*Les notes de quizz pour type QCM:</h6>
-                <ul style={{ padding: 30 }}>
-                  <li>Astrologie</li>
-                  <br />
-                  <li>Numérologie</li>
-                  <br />
-                  <li>Tarologie</li>
-                  <br />
-                  <li>Culture-Général</li>
-                </ul>
-              </div>
-              <div>
-                <h6>*Les notes de quizz pour type Vrai ou Faux:</h6>
-                <ul style={{ padding: 30 }}>
-                  <li>Astrologie</li>
-                  <br />
-                  <li>Numérologie</li>
-                  <br />
-                  <li>Tarologie</li>
-                  <br />
-                  <li>Culture-Général</li>
-                </ul>
-              </div>
+              {fields.map((field) => (
+                <div key={field.key}>
+                  <h6>*Les notes de quizz pour type {field.name} :</h6>
+                  <ul style={{ padding: 30 }}>
+                    {user.quizResponses &&
+                      user.quizResponses
+                        .filter(
+                          (response: QuizResponse) =>
+                            response.quizType === field.key
+                        )
+                        .map(
+                          (filteredResponse: QuizResponse, index: number) => (
+                            <li key={index}>{filteredResponse.value} </li>
+                          )
+                        )}
+                  </ul>
+                </div>
+              ))}
             </CardBody>
           </Card>
         </div>

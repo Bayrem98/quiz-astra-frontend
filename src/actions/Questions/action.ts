@@ -2,7 +2,7 @@ import axios from "axios";
 import Question from "../../@types/Question";
 
 export function getQuestions(
-  query: { category?: string; question?: string } | null,
+  query: { category?: string; quizType?: string } | null,
   callback: (data: Question[]) => void
 ) {
   axios

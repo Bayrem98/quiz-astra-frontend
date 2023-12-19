@@ -1,6 +1,8 @@
+import QuizResponse from "./QuizResponse";
+
 export default interface User {
   _id?: string;
   username: string;
   password: string;
-  quizResponses?: object[];
+  quizResponses?: QuizResponse[];
 }

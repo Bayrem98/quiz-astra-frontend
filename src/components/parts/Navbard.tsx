@@ -101,6 +101,7 @@ function Navbard() {
   const logout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("quiz_responses");
     navigate("/");
     window.location.reload();
   };
@@ -169,6 +170,9 @@ function Navbard() {
                   </DropdownItem>
                   <DropdownItem href="/adminuserstable">
                     Ajouter Des Admin-Utilisateurs
+                  </DropdownItem>
+                  <DropdownItem href="/recapallusers">
+                    Recap pour tous les utilisateurs
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
