@@ -1,65 +1,80 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, CardHeader } from "reactstrap";
+import { Card, CardBody, CardHeader, Table } from "reactstrap";
 import User from "../../@types/User";
 import { getUser } from "../../actions/Users/action";
-import QuizResponse from "../../@types/QuizResponse";
 import { useParams } from "react-router-dom";
-
-const fields = [
-  { key: "qcm", name: "QCM" },
-  { key: "vraifaux", name: "Vrai ou Faux" },
-  { key: "questionreponse", name: "Question/Reponse" },
-];
+import axios from "axios";
 
 const Profil = () => {
-  const { userId } = useParams();
+  let { userId } = useParams();
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    if (userId) {
-      getUser(userId, setUser);
-    }
+    const fetchData = async () => {
+      if (userId) {
+        getUser(userId, setUser);
+      }
+      await handleShowAnswers();
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
+
+  const handleShowAnswers = () => {
+    axios
+      .get(`http://localhost:3000/user/quizanswers/${userId}`)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'affichage des réponses :", error);
+      });
+  };
 
   return user ? (
     <>
-      <div
-        className="d-flex justify-content-center"
-        style={{
-          paddingTop: 80,
-          paddingLeft: 50,
-          paddingRight: 50,
-          paddingBottom: 80,
-          backgroundColor: "silver",
-        }}
-      >
-        <div>
-          <Card style={{ width: 500, height: "100%" }}>
-            <CardHeader style={{ textAlign: "center" }}>
-              Nom d'utilisateur: {user.username}
-            </CardHeader>
-            <CardBody>
-              {fields.map((field) => (
-                <div key={field.key}>
-                  <h6>*Les notes de quizz pour type {field.name} :</h6>
-                  <ul style={{ padding: 30 }}>
-                    {user.quizResponses &&
-                      user.quizResponses
-                        .filter(
-                          (response: QuizResponse) =>
-                            response.quizType === field.key
-                        )
-                        .map(
-                          (filteredResponse: QuizResponse, index: number) => (
-                            <li key={index}>{filteredResponse.value} </li>
-                          )
-                        )}
-                  </ul>
-                </div>
-              ))}
-            </CardBody>
-          </Card>
-        </div>
+      <div className="d-flex justify-content-center">
+        <Card
+          style={{
+            width: 800,
+            height: "100%",
+            backgroundColor: "lightgray",
+            marginTop: 30,
+          }}
+        >
+          <CardHeader style={{ textAlign: "center" }}>
+            Nom d'utilisateur: {user.username}
+          </CardHeader>
+          <CardBody>
+            <h6>*Tous Vous Réponses de Quiz :</h6>
+            <br />
+            {user.quizResponses && user.quizResponses.length > 0 ? (
+              <Table bordered hover responsive>
+                <thead>
+                  <tr>
+                    <th>QuizType</th>
+                    <th>Categorie</th>
+                    <th>Question</th>
+                    <th>Réponse</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {user.quizResponses.map((response, index) => (
+                    <tr key={index}>
+                      <td>{response.quizType}</td>
+                      <td>{response.category}</td>
+                      <td>{response.question}</td>
+                      <td>{response.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <p>Aucune réponse de quiz disponible.</p>
+            )}
+          </CardBody>
+        </Card>
       </div>
     </>
   ) : (

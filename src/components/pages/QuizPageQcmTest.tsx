@@ -49,8 +49,8 @@ const QuizPageQcmTest = () => {
         const quizResponses: QuizResponse[] = Object.keys(selectedAnswers).map(
           (questionId) => ({
             _id: questionId, // ou générer un nouvel identifiant unique selon votre logique
-            quizType: quizTy,
-            category: categ,
+            quizType: quizTy ?? "",
+            category: categ ?? "",
             question: questionId, // Assurez-vous que questionId est correct
             value: selectedAnswers[questionId],
           })
