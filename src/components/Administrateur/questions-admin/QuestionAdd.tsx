@@ -10,7 +10,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { addquestion } from "../../actions/Questions/action";
+import { addquestion } from "../../../actions/Questions/action";
 
 interface QuestionAddPropsType {
   refresh: () => void;

@@ -2,19 +2,19 @@ import { useState } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import User from "../../@types/User";
-import { deleteUser } from "../../actions/Users/action";
+import Adminuser from "../../../@types/Adminuser";
+import { deleteAdminuser } from "../../../actions/Adminusers/action";
 
-interface UserDeletePropsType {
-  user: User;
+interface AdminuserDeletePropsType {
+  adminuser: Adminuser;
   refresh: () => void;
 }
 
-const UserDelete = ({ user, refresh }: UserDeletePropsType) => {
+const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const submit = () => {
-    deleteUser(user, () => {
+    deleteAdminuser(adminuser, () => {
       refresh();
       setIsOpened(false);
     });
@@ -40,9 +40,9 @@ const UserDelete = ({ user, refresh }: UserDeletePropsType) => {
           className="bg-danger text-white"
           toggle={() => setIsOpened(!isOpened)}
         >
-          Supprimer Utilisateur
+          Supprimer Adminuser
         </ModalHeader>
-        <ModalBody>Voulez-vous supprimer {user.username} ?</ModalBody>
+        <ModalBody>Voulez-vous supprimer {adminuser.username} ?</ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={submit}>
             Valider
@@ -54,4 +54,4 @@ const UserDelete = ({ user, refresh }: UserDeletePropsType) => {
   );
 };
 
-export default UserDelete;
+export default AdminuserDelete;

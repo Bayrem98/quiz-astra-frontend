@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { ButtonGroup, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
-import Adminuser from "../../@types/Adminuser";
-import { getAdminusers } from "../../actions/Adminusers/action";
+import Adminuser from "../../../@types/Adminuser";
+import { getAdminusers } from "../../../actions/Adminusers/action";
 import AdminuserAdd from "./AdminuserAdd";
 import AdminuserDelete from "./AdminuserDelete";
 

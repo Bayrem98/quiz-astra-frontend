@@ -2,19 +2,19 @@ import { useState } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import Adminuser from "../../@types/Adminuser";
-import { deleteAdminuser } from "../../actions/Adminusers/action";
+import Question from "../../../@types/Question";
+import { deleteQuestions } from "../../../actions/Questions/action";
 
-interface AdminuserDeletePropsType {
-  adminuser: Adminuser;
+interface BookDeletePropsType {
+  question: Question;
   refresh: () => void;
 }
 
-const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
-  const [isOpened, setIsOpened] = useState<boolean>(false);
+const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
+  const [isOpened, setIsOpened] = useState<boolean>(false); // form state for modal.
 
   const submit = () => {
-    deleteAdminuser(adminuser, () => {
+    deleteQuestions(question, () => {
       refresh();
       setIsOpened(false);
     });
@@ -22,13 +22,9 @@ const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
 
   return (
     <>
-      <Button
-        className="btn3-delete"
-        color="danger"
-        onClick={() => setIsOpened(true)}
-      >
+      <button className="btn3-delete" onClick={() => setIsOpened(true)}>
         <FontAwesomeIcon icon={faTrash} />
-      </Button>
+      </button>
       <Modal
         className="font-['Helvetica']"
         centered
@@ -40,12 +36,12 @@ const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
           className="bg-danger text-white"
           toggle={() => setIsOpened(!isOpened)}
         >
-          Supprimer Adminuser
+          Question Supprimer
         </ModalHeader>
-        <ModalBody>Voulez-vous supprimer {adminuser.username} ?</ModalBody>
+        <ModalBody>vous les vous supprimer {question.question} ?</ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={submit}>
-            Valider
+            Confirme
           </Button>{" "}
           <Button onClick={() => setIsOpened(false)}>Annuler</Button>
         </ModalFooter>
@@ -54,4 +50,4 @@ const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
   );
 };
 
-export default AdminuserDelete;
+export default QuestionDelete;

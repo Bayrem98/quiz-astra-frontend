@@ -3,8 +3,8 @@ import { ButtonGroup, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import UserDelete from "./UserDelete";
-import User from "../../@types/User";
-import { getUsers } from "../../actions/Users/action";
+import User from "../../../@types/User";
+import { getUsers } from "../../../actions/Users/action";
 import UserAdd from "./UserAdd";
 
 interface Props {}

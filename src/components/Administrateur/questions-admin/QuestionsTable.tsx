@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import { ButtonGroup, Table } from "reactstrap";
-import Question from "../../@types/Question";
-import { getQuestions } from "../../actions/Questions/action";
+import Question from "../../../@types/Question";
+import { getQuestions } from "../../../actions/Questions/action";
 import QuestionAdd from "./QuestionAdd";
 import QuestionDelete from "./QuestionDelete";
 interface Props {}

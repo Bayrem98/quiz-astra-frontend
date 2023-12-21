@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import User from "../../@types/User";
-import { getUsers } from "../../actions/Users/action";
+import User from "../../../@types/User";
+import { getUsers } from "../../../actions/Users/action";
 import axios from "axios";
 import { Table } from "reactstrap";
 

@@ -2,19 +2,19 @@ import { useState } from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import Question from "../../@types/Question";
-import { deleteQuestions } from "../../actions/Questions/action";
+import User from "../../../@types/User";
+import { deleteUser } from "../../../actions/Users/action";
 
-interface BookDeletePropsType {
-  question: Question;
+interface UserDeletePropsType {
+  user: User;
   refresh: () => void;
 }
 
-const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
-  const [isOpened, setIsOpened] = useState<boolean>(false); // form state for modal.
+const UserDelete = ({ user, refresh }: UserDeletePropsType) => {
+  const [isOpened, setIsOpened] = useState<boolean>(false);
 
   const submit = () => {
-    deleteQuestions(question, () => {
+    deleteUser(user, () => {
       refresh();
       setIsOpened(false);
     });
@@ -22,9 +22,13 @@ const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
 
   return (
     <>
-      <button className="btn3-delete" onClick={() => setIsOpened(true)}>
+      <Button
+        className="btn3-delete"
+        color="danger"
+        onClick={() => setIsOpened(true)}
+      >
         <FontAwesomeIcon icon={faTrash} />
-      </button>
+      </Button>
       <Modal
         className="font-['Helvetica']"
         centered
@@ -36,12 +40,12 @@ const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
           className="bg-danger text-white"
           toggle={() => setIsOpened(!isOpened)}
         >
-          Question Supprimer
+          Supprimer Utilisateur
         </ModalHeader>
-        <ModalBody>vous les vous supprimer {question.question} ?</ModalBody>
+        <ModalBody>Voulez-vous supprimer {user.username} ?</ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={submit}>
-            Confirme
+            Valider
           </Button>{" "}
           <Button onClick={() => setIsOpened(false)}>Annuler</Button>
         </ModalFooter>
@@ -50,4 +54,4 @@ const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
   );
 };
 
-export default QuestionDelete;
+export default UserDelete;

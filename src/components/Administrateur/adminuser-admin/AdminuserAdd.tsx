@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { addUser } from "../../actions/Users/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faEye } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -13,11 +12,12 @@ import {
   ModalFooter,
   ModalHeader,
 } from "reactstrap";
+import { addAdminuser } from "../../../actions/Adminusers/action";
 
-interface UserAddPropsType {
+interface AdminuserAddPropsType {
   refresh: () => void;
 }
-const UserAdd = (props: UserAddPropsType) => {
+const AdminuserAdd = (props: AdminuserAddPropsType) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   // form states
@@ -34,11 +34,11 @@ const UserAdd = (props: UserAddPropsType) => {
   };
 
   const submit = () => {
-    const newUser = {
+    const newAdminuser = {
       username,
       password,
     };
-    addUser(newUser, () => {
+    addAdminuser(newAdminuser, () => {
       props.refresh();
       setIsOpened(false);
       reset();
@@ -86,7 +86,7 @@ const UserAdd = (props: UserAddPropsType) => {
           }}
           toggle={() => setIsOpened(!isOpened)}
         >
-          <span>Ajouter utilisateur</span>
+          <span>Ajouter Adminuser</span>
         </ModalHeader>
         <ModalBody>
           <Form>
@@ -155,4 +155,4 @@ const UserAdd = (props: UserAddPropsType) => {
   );
 };
 
-export default UserAdd;
+export default AdminuserAdd;

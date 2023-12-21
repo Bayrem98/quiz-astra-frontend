@@ -1,20 +1,20 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import QuestionsTable from "./components/questions-admin/QuestionsTable";
+import QuestionsTable from "./components/Administrateur/questions-admin/QuestionsTable";
 import Navbard from "./components/parts/Navbard";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/pages/Login";
-import UsersTable from "./components/users-admin/UserTable";
+import UsersTable from "./components/Administrateur/users-admin/UserTable";
 import Profil from "./components/pages/Profil";
-import AdminusersTable from "./components/adminuser-admin/AdminuserTable";
+import AdminusersTable from "./components/Administrateur/adminuser-admin/AdminuserTable";
 import Cookies from "js-cookie";
 import AccueilQuiz from "./components/pages/AcceuilQuiz";
 import Home from "./components/pages/Home";
 import QuizPageQcmTest from "./components/pages/QuizPageQcmTest";
 import QuizPageVfTest from "./components/pages/QuizPageVfTest";
 import QuizPageQrTest from "./components/pages/QuizPageQrTest";
-import RecapAllUsers from "./components/recap-users-admin/RecapAllUsers";
+import RecapAllUsers from "./components/Administrateur/recap-users-admin/RecapAllUsers";
 
 enum WebsiteRoute {
   LOGIN = "/",
