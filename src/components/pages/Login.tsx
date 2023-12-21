@@ -149,7 +149,7 @@ function Login() {
                   <div className="d-flex justify-content-between">
                     <Input
                       type="select"
-                      value={isAdmin ? "user" : "admin"}
+                      value={isAdmin ? "admin" : "user"}
                       onChange={toggleRole}
                       style={{ width: 300 }}
                     >
@@ -216,7 +216,7 @@ function Login() {
                   >
                     <span style={{ color: "black" }}>
                       Valider en tant que{" "}
-                      {isAdmin ? "utilisateur" : "administrateur"}
+                      {isAdmin ? "administrateur" : "utilisateur"}
                     </span>
                   </Button>
                 </FormGroup>
