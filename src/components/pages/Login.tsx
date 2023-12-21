@@ -1,5 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
-import { faEye, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEye,
+  faLock,
+  faPersonCircleQuestion,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
@@ -97,7 +102,7 @@ function Login() {
             <img
               src="/image/pngwing.com.png"
               alt="."
-              style={{ height: 350, width: 350, marginTop: 170 }}
+              style={{ height: 450, width: 450, marginTop: 135 }}
             />
           </div>
           <div
@@ -127,25 +132,38 @@ function Login() {
                 />
               )}
               <br />
-              <Input
-                type="select"
-                value={isAdmin ? "admin" : "user"}
-                onChange={toggleRole}
-                style={{ width: 160 }}
-              >
-                <option value="user">Utilisateur</option>
-                <option value="admin">Administrateur</option>
-              </Input>
               <h2 style={{ color: "black", textAlign: "center" }}>
                 Connectez-vous
               </h2>
+              <br />
               <Form onSubmit={(event) => login(event, isAdmin)}>
+                <FormGroup style={{ paddingLeft: 95 }}>
+                  <Label style={{ color: "black" }}>
+                    <FontAwesomeIcon
+                      icon={faPersonCircleQuestion}
+                      beatFade
+                      style={{ color: "#000000", marginRight: 8, fontSize: 20 }}
+                    />
+                    Choisir votre role
+                  </Label>
+                  <div className="d-flex justify-content-between">
+                    <Input
+                      type="select"
+                      value={isAdmin ? "user" : "admin"}
+                      onChange={toggleRole}
+                      style={{ width: 300 }}
+                    >
+                      <option value="user">Utilisateur</option>
+                      <option value="admin">Administrateur</option>
+                    </Input>
+                  </div>
+                </FormGroup>
                 <FormGroup style={{ paddingLeft: 95 }}>
                   <Label style={{ color: "black" }}>
                     <FontAwesomeIcon
                       icon={faUser}
                       beatFade
-                      style={{ color: "#000000", marginRight: 5 }}
+                      style={{ color: "#000000", marginRight: 8 }}
                     />
                     Nom d'utilisateur
                   </Label>
@@ -163,7 +181,7 @@ function Login() {
                     <FontAwesomeIcon
                       icon={faLock}
                       beatFade
-                      style={{ color: "#000000", marginRight: 5 }}
+                      style={{ color: "#000000", marginRight: 8 }}
                     />
                     Mot de passe
                   </Label>
@@ -198,7 +216,7 @@ function Login() {
                   >
                     <span style={{ color: "black" }}>
                       Valider en tant que{" "}
-                      {isAdmin ? "administrateur" : "utilisateur"}
+                      {isAdmin ? "utilisateur" : "administrateur"}
                     </span>
                   </Button>
                 </FormGroup>
