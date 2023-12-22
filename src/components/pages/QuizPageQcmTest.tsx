@@ -53,6 +53,8 @@ const QuizPageQcmTest = () => {
             category: categ ?? "",
             question: questionId, // Assurez-vous que questionId est correct
             value: selectedAnswers[questionId],
+            correctionQuestion: "",
+            note: 0,
           })
         );
 
