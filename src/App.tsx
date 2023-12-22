@@ -15,6 +15,7 @@ import QuizPageQcmTest from "./components/pages/QuizPageQcmTest";
 import QuizPageVfTest from "./components/pages/QuizPageVfTest";
 import QuizPageQrTest from "./components/pages/QuizPageQrTest";
 import RecapAllUsers from "./components/Administrateur/recap-users-admin/RecapAllUsers";
+import RecapOneUser from "./components/Administrateur/recap-users-admin/RecapOneUser";
 
 enum WebsiteRoute {
   LOGIN = "/",
@@ -28,6 +29,7 @@ enum WebsiteRoute {
   QUIZ_PAGE_CATEG3 = "/accueilquiz/quizpageqrtest/:categ/:quizTy",
   PROFIL = "/profil/:userId",
   RECAP_ALL_USERS = "/recapallusers",
+  RECAP_ONE_USER = "/recaponeuser/:userId",
 }
 
 function App() {
@@ -77,6 +79,10 @@ function App() {
             <Route
               path={WebsiteRoute.RECAP_ALL_USERS}
               element={<RecapAllUsers />}
+            />
+            <Route
+              path={WebsiteRoute.RECAP_ONE_USER}
+              element={<RecapOneUser />}
             />
           </Routes>
         </>
