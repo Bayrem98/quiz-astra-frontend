@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import User from "../../../@types/User";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button, Input, Table } from "reactstrap";
+import QuizResponse from "../../../@types/QuizResponse";
 
 const RecapOneUser = () => {
   let { userId } = useParams();
   const [user, setUser] = useState<User>();
-  const [correction, setCorrection] = useState<string>("");
-  const [note, setNote] = useState<number>();
+  const [correction, setCorrection] = useState<{ [key: string]: string }>({});
+  const [note, setNote] = useState<{ [key: string]: number }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +19,41 @@ const RecapOneUser = () => {
           `http://localhost:3000/user/quizanswers/${userId}`
         );
         setUser(response.data);
+
+        // Initialiser correction et note avec les valeurs stockées en local storage
+        const storedCorrection = localStorage.getItem(`correction-${userId}`);
+        const storedNote = localStorage.getItem(`note-${userId}`);
+
+        const initialCorrection: { [key: string]: string } = storedCorrection
+          ? JSON.parse(storedCorrection)
+          : {};
+        const initialNote: { [key: string]: number } = storedNote
+          ? JSON.parse(storedNote)
+          : {};
+
+        let totalNote = 0; // Variable to store the sum of notes
+
+        if (response.data && response.data.quizResponses) {
+          response.data.quizResponses.forEach((response: QuizResponse) => {
+            initialCorrection[response.question] =
+              response.correctionQuestion ||
+              initialCorrection[response.question] ||
+              "";
+            initialNote[response.question] =
+              response.note || initialNote[response.question] || 0;
+            totalNote += response.note || 0; // Add each note to the totalNote
+          });
+        }
+
+        setCorrection(initialCorrection);
+        setNote(initialNote);
+
+        // Update the user object with the totalNote
+        const updatedUser = {
+          ...response.data,
+          noteGlobal: totalNote.toString(),
+        };
+        setUser(updatedUser);
       } catch (error) {
         console.error(
           "Erreur lors de la récupération de l'utilisateur :",
@@ -34,16 +70,58 @@ const RecapOneUser = () => {
   }
 
   const handelCorrectionResponses = () => {
-    const updatedUser = { ...user, corrections: correction, note: note };
+    if (!user || !user.quizResponses) {
+      console.error("Les réponses de l'utilisateur ne sont pas disponibles.");
+      return;
+    }
 
+    const updatedUser = {
+      ...user,
+      quizResponses: user.quizResponses.map((response) => ({
+        ...response,
+        correctionQuestion: correction[response.question],
+        note: note[response.question],
+      })),
+    };
     axios
-      .put(`http://localhost:3000/user/${userId}`, updatedUser)
+      .put(`http://localhost:3000/user/updateanswers/${userId}`, updatedUser)
       .then((response) => {
         console.log("Correction réponses :", response.data);
       })
       .catch((error) => {
         console.log("Erreur Correction :", error);
       });
+    window.location.reload();
+  };
+
+  const onCorrectionChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    question: string
+  ) => {
+    const updatedCorrection = {
+      ...correction,
+      [question]: event.target.value,
+    };
+    setCorrection(updatedCorrection);
+    localStorage.setItem(
+      `correction-${userId}`,
+      JSON.stringify(updatedCorrection)
+    );
+  };
+
+  const onNoteChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    question: string
+  ) => {
+    const inputValue = event.target.value;
+    console.log("Input Value:", inputValue); // Debugging statement
+    const updatedNote = {
+      ...note,
+      [question]: inputValue === "" ? 0 : parseInt(inputValue, 10),
+    };
+    console.log("Updated Note:", updatedNote); // Debugging statement
+    setNote(updatedNote);
+    localStorage.setItem(`note-${userId}`, JSON.stringify(updatedNote));
   };
 
   return (
@@ -59,7 +137,11 @@ const RecapOneUser = () => {
         className="d-flex justify-content-between"
         style={{ marginLeft: 20, marginRight: 20 }}
       >
-        <h2>Recap Tous Les Quiz pour {user && user.username}</h2>
+        <h2>Recap Tous Les Quiz pour {user._id && user.username}</h2>
+        <span style={{ fontWeight: "bold" }}>
+          Score: {user.noteGlobal}/
+          {user.quizResponses && user.quizResponses.length}
+        </span>
         <Button onClick={handelCorrectionResponses}>Enregistrer</Button>
       </div>
       <br />
@@ -92,22 +174,23 @@ const RecapOneUser = () => {
                     <Input
                       type="text"
                       style={{ width: 150 }}
-                      onChange={(e) => setCorrection(e.target.value)}
-                      value={response.correctionQuestion}
+                      value={correction[response.question] || ""}
+                      onChange={(e) => onCorrectionChange(e, response.question)}
                     />
                   </td>
                   <td>
                     <Input
                       type="text"
                       style={{ width: 40 }}
-                      onChange={(e) => setNote(parseInt(e.target.value, 10))}
+                      value={note[response.question] || ""}
+                      onChange={(e) => onNoteChange(e, response.question)}
                     />
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={7}>Aucune réponse de quiz disponible.</td>
+                <td colSpan={6}>Aucune réponse de quiz disponible.</td>
               </tr>
             )}
           </tbody>

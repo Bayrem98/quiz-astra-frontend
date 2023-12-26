@@ -15,9 +15,27 @@ const QuizPageQrTest = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
+  const [questionsText, setQuestionsText] = useState<{ [key: string]: string }>(
+    {}
+  );
 
   useEffect(() => {
-    getQuestions({ category: categ, quizType: quizTy }, setQuestions);
+    getQuestions({ category: categ, quizType: quizTy }, (questionsData) => {
+      if (!questionsData) {
+        console.error("Les données des questions sont indéfinies.");
+        return;
+      }
+      setQuestions(questionsData);
+      // Stockez les textes des questions dans l'état
+      const questionsTextData = questionsData.reduce((acc, q) => {
+        if (q && q._id) {
+          acc[q._id] = q.question;
+        }
+        return acc;
+      }, {} as { [key: string]: string });
+
+      setQuestionsText(questionsTextData);
+    });
   }, [categ, quizTy]);
 
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
@@ -49,10 +67,12 @@ const QuizPageQrTest = () => {
         const quizResponses: QuizResponse[] = Object.keys(selectedAnswers).map(
           (questionId) => ({
             _id: questionId, // ou générer un nouvel identifiant unique selon votre logique
-            quizType: quizTy ?? '',
-            category: categ ?? '',
-            question: questionId, // Assurez-vous que questionId est correct
+            quizType: quizTy ?? "",
+            category: categ ?? "",
+            question: questionsText[questionId] ?? "", // Utilisez le texte de la question
             value: selectedAnswers[questionId],
+            correctionQuestion: "",
+            note: 0,
           })
         );
 
@@ -125,6 +145,7 @@ const QuizPageQrTest = () => {
                       style={{ width: 500 }}
                     />
                   </label>
+                  <br />
                   <br />
                 </div>
               ))

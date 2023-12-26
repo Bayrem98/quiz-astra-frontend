@@ -58,7 +58,7 @@ function Login() {
           Cookies.set(
             "access_token",
             token,
-            { expires: 1 / 24 } // 1 heure (1/24 de la journée)
+            { expires: 5 / 24 } // 1 heure (1/24 de la journée)
           );
         }
 

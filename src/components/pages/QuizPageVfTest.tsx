@@ -15,11 +15,28 @@ const QuizPageVfTest = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
+  const [questionsText, setQuestionsText] = useState<{ [key: string]: string }>(
+    {}
+  );
 
   useEffect(() => {
-    getQuestions({ category: categ, quizType: quizTy }, setQuestions);
-  }, [categ, quizTy]);
+    getQuestions({ category: categ, quizType: quizTy }, (questionsData) => {
+      if (!questionsData) {
+        console.error("Les données des questions sont indéfinies.");
+        return;
+      }
+      setQuestions(questionsData);
+      // Stockez les textes des questions dans l'état
+      const questionsTextData = questionsData.reduce((acc, q) => {
+        if (q && q._id) {
+          acc[q._id] = q.question;
+        }
+        return acc;
+      }, {} as { [key: string]: string });
 
+      setQuestionsText(questionsTextData);
+    });
+  }, [categ, quizTy]);
   const handleRadioChange = (questionId: any, selectedAnswer: any) => {
     setSelectedAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -46,27 +63,29 @@ const QuizPageVfTest = () => {
           ? JSON.parse(storedResponsesString)
           : [];
 
-          const quizResponses: QuizResponse[] = Object.keys(selectedAnswers).map(
-            (questionId) => ({
-              _id: questionId, // ou générer un nouvel identifiant unique selon votre logique
-              quizType: quizTy ?? '',
-              category: categ ?? '',
-              question: questionId, // Assurez-vous que questionId est correct
-              value: selectedAnswers[questionId],
-            })
-          );
-  
-          // Ajoutez les nouvelles réponses aux réponses précédentes
-          const allResponses = [...previousResponses, ...quizResponses];
-  
-          // Stockez toutes les réponses dans le stockage local
-          localStorage.setItem("quiz_responses", JSON.stringify(allResponses));
-  
-          // Envoyez toutes les réponses avec l'ID de l'utilisateur
-          axios
-            .post(`http://localhost:3000/user/saveanswers/${userId}`, {
-              quizResponses: allResponses,
-            })
+        const quizResponses: QuizResponse[] = Object.keys(selectedAnswers).map(
+          (questionId) => ({
+            _id: questionId, // ou générer un nouvel identifiant unique selon votre logique
+            quizType: quizTy ?? "",
+            category: categ ?? "",
+            question: questionsText[questionId] ?? "", // Utilisez le texte de la question
+            value: selectedAnswers[questionId],
+            correctionQuestion: "",
+            note: 0,
+          })
+        );
+
+        // Ajoutez les nouvelles réponses aux réponses précédentes
+        const allResponses = [...previousResponses, ...quizResponses];
+
+        // Stockez toutes les réponses dans le stockage local
+        localStorage.setItem("quiz_responses", JSON.stringify(allResponses));
+
+        // Envoyez toutes les réponses avec l'ID de l'utilisateur
+        axios
+          .post(`http://localhost:3000/user/saveanswers/${userId}`, {
+            quizResponses: allResponses,
+          })
           .then((response) => {
             console.log("Réponses enregistrées :", response.data);
           })
@@ -114,7 +133,6 @@ const QuizPageVfTest = () => {
                 <div className="Questionstable-table-tbody" key={question._id}>
                   <p>*-{question.question}</p>
                   <h6>Les réponses:</h6>
-                  {/* Bouton radio pour la première réponse incorrecte */}
                   <label>
                     <input
                       type="radio"
@@ -142,6 +160,7 @@ const QuizPageVfTest = () => {
                     />
                     {question.correct_answer}
                   </label>
+                  <br />
                   <br />
                 </div>
               ))
