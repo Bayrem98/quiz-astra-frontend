@@ -71,7 +71,7 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
   return (
     <>
       <Button onClick={() => setIsOpened(true)}>
-        <FontAwesomeIcon icon={faAdd} color="white" />
+        <FontAwesomeIcon icon={faAdd} color="white" beatFade size="2xl" />
       </Button>
       <Modal
         centered

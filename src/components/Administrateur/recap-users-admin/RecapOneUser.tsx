@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Button, Input, Table } from "reactstrap";
 import QuizResponse from "../../../@types/QuizResponse";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave } from "@fortawesome/free-regular-svg-icons";
 
 const RecapOneUser = () => {
   let { userId } = useParams();
@@ -126,76 +128,86 @@ const RecapOneUser = () => {
 
   return (
     <>
-      <img
-        src="/image/pngwing.com.png"
-        alt="."
-        width={40}
-        onClick={() => navigate(-1)}
-        style={{ cursor: "pointer", marginLeft: 10 }}
-      />
       <div
-        className="d-flex justify-content-between"
-        style={{ marginLeft: 20, marginRight: 20 }}
+        style={{
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
+        }}
       >
-        <h2>Recap Tous Les Quiz pour {user._id && user.username}</h2>
-        <span style={{ fontWeight: "bold" }}>
-          Score: {user.noteGlobal}/
-          {user.quizResponses && user.quizResponses.length}
-        </span>
-        <Button onClick={handelCorrectionResponses}>Enregistrer</Button>
-      </div>
-      <br />
-      {user && (
-        <Table
-          bordered
-          hover
-          responsive
-          style={{ width: "95%", marginLeft: 20 }}
+        <img
+          src="/image/pngwing.com.png"
+          alt="."
+          width={40}
+          onClick={() => navigate(-1)}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 70 }}
+        />
+        <div
+          className="d-flex justify-content-between"
+          style={{ marginLeft: 20, marginRight: 20 }}
         >
-          <thead>
-            <tr>
-              <th>QuizType</th>
-              <th>Categorie</th>
-              <th>Question</th>
-              <th>Réponse</th>
-              <th>Correction</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user.quizResponses && user.quizResponses.length > 0 ? (
-              user.quizResponses.map((response, responseIndex) => (
-                <tr key={responseIndex}>
-                  <td>{response.quizType}</td>
-                  <td>{response.category}</td>
-                  <td>{response.question}</td>
-                  <td>{response.value}</td>
-                  <td>
-                    <Input
-                      type="text"
-                      style={{ width: 150 }}
-                      value={correction[response.question] || ""}
-                      onChange={(e) => onCorrectionChange(e, response.question)}
-                    />
-                  </td>
-                  <td>
-                    <Input
-                      type="text"
-                      style={{ width: 40 }}
-                      value={note[response.question] || ""}
-                      onChange={(e) => onNoteChange(e, response.question)}
-                    />
-                  </td>
+          <h3 style={{ color: "white" }}>
+            Recap Tous Les Quiz pour {user._id && user.username}
+          </h3>
+          <span style={{ fontWeight: "bold", color: "white", fontSize: 20 }}>
+            Score: {user.noteGlobal}/
+            {user.quizResponses && user.quizResponses.length}
+          </span>
+          <Button onClick={handelCorrectionResponses}>
+            <FontAwesomeIcon icon={faSave} color="white" beatFade size="2xl" />
+          </Button>
+        </div>
+        <br />
+        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 570 }}>
+          {user && (
+            <Table bordered hover responsive>
+              <thead>
+                <tr>
+                  <th>QuizType</th>
+                  <th>Categorie</th>
+                  <th>Question</th>
+                  <th>Réponse</th>
+                  <th>Correction</th>
+                  <th>Note</th>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={6}>Aucune réponse de quiz disponible.</td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-      )}
+              </thead>
+              <tbody>
+                {user.quizResponses && user.quizResponses.length > 0 ? (
+                  user.quizResponses.map((response, responseIndex) => (
+                    <tr key={responseIndex}>
+                      <td>{response.quizType}</td>
+                      <td>{response.category}</td>
+                      <td>{response.question}</td>
+                      <td>{response.value}</td>
+                      <td>
+                        <Input
+                          type="text"
+                          style={{ width: 150 }}
+                          value={correction[response.question] || ""}
+                          onChange={(e) =>
+                            onCorrectionChange(e, response.question)
+                          }
+                        />
+                      </td>
+                      <td>
+                        <Input
+                          type="text"
+                          style={{ width: 40 }}
+                          value={note[response.question] || ""}
+                          onChange={(e) => onNoteChange(e, response.question)}
+                        />
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={6}>Aucune réponse de quiz disponible.</td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
+          )}
+        </div>
+      </div>
     </>
   );
 };

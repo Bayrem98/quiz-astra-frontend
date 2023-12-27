@@ -65,8 +65,8 @@ const UserAdd = (props: UserAddPropsType) => {
 
   return (
     <>
-       <Button onClick={() => setIsOpened(true)}>
-        <FontAwesomeIcon icon={faAdd} color="white" />
+      <Button onClick={() => setIsOpened(true)}>
+        <FontAwesomeIcon icon={faAdd} color="white" beatFade size="2xl" />
       </Button>
       <Modal
         centered

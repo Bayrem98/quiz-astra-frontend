@@ -33,7 +33,7 @@ const QuestionsTable = (props: Props) => {
         </div>
         <br />
         <div style={{ marginLeft: 50, marginRight: 50 }}>
-          <Table bordered responsive hover>
+          <Table bordered responsive hover style={{ overflowY: "auto" }}>
             <thead>
               <tr>
                 <th>Catégorie</th>

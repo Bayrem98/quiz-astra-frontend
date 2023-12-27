@@ -93,134 +93,146 @@ function Login() {
     <>
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
         }}
       >
-        <div style={{ display: "flex", height: "100vh" }}>
-          <div style={{ flex: 1, padding: "20px" }}>
-            <img
-              src="/image/pngwing.com.png"
-              alt="."
-              style={{ height: 450, width: 450, marginTop: 135 }}
-            />
-          </div>
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginBottom: 120,
-            }}
-          >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{ display: "flex", height: "100vh" }}>
+            <div style={{ flex: 1, padding: "20px" }}>
+              <img
+                src="/image/pngwing.com.png"
+                alt="."
+                style={{ height: 450, width: 450, marginTop: 135 }}
+              />
+            </div>
             <div
-              className="card"
               style={{
-                backgroundColor: "lightgray",
-                width: 500,
-                borderRadius: 20,
+                flex: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginBottom: 120,
               }}
             >
-              <br />
-              {errorMessage && (
-                <Alert
-                  message=""
-                  description={errorMessage}
-                  type="error"
-                  showIcon
-                />
-              )}
-              <br />
-              <h2 style={{ color: "black", textAlign: "center" }}>
-                Connectez-vous
-              </h2>
-              <br />
-              <Form onSubmit={(event) => login(event, isAdmin)}>
-                <FormGroup style={{ paddingLeft: 95 }}>
-                  <Label style={{ color: "black" }}>
-                    <FontAwesomeIcon
-                      icon={faPersonCircleQuestion}
-                      beatFade
-                      style={{ color: "#000000", marginRight: 8, fontSize: 20 }}
-                    />
-                    Choisir votre role
-                  </Label>
-                  <div className="d-flex justify-content-between">
-                    <Input
-                      type="select"
-                      value={isAdmin ? "admin" : "user"}
-                      onChange={toggleRole}
-                      style={{ width: 300 }}
-                    >
-                      <option value="user">Utilisateur</option>
-                      <option value="admin">Administrateur</option>
-                    </Input>
-                  </div>
-                </FormGroup>
-                <FormGroup style={{ paddingLeft: 95 }}>
-                  <Label style={{ color: "black" }}>
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      beatFade
-                      style={{ color: "#000000", marginRight: 8 }}
-                    />
-                    Nom d'utilisateur
-                  </Label>
-                  <div className="d-flex justify-content-between">
-                    <Input
-                      type="text"
-                      value={username}
-                      onChange={handleUsernameChange}
-                      style={{ width: 300 }}
-                    />
-                  </div>
-                </FormGroup>
-                <FormGroup style={{ paddingLeft: 95 }}>
-                  <Label style={{ color: "black" }}>
-                    <FontAwesomeIcon
-                      icon={faLock}
-                      beatFade
-                      style={{ color: "#000000", marginRight: 8 }}
-                    />
-                    Mot de passe
-                  </Label>
-                  <div className="d-flex justify-content-between">
-                    <Input
-                      value={password}
-                      onChange={handlePasswordChange}
-                      type={passwordShown ? "text" : "password"}
-                      style={{ width: 300 }}
-                    />
+              <div
+                className="card"
+                style={{
+                  backgroundColor: "#6c757d",
+                  width: 500,
+                  borderRadius: 20,
+                }}
+              >
+                <br />
+                {errorMessage && (
+                  <Alert
+                    message=""
+                    description={errorMessage}
+                    type="error"
+                    showIcon
+                  />
+                )}
+                <br />
+                <h2 style={{ color: "white", textAlign: "center" }}>
+                  Connectez-vous
+                </h2>
+                <br />
+                <Form onSubmit={(event) => login(event, isAdmin)}>
+                  <FormGroup style={{ paddingLeft: 95 }}>
+                    <Label style={{ color: "white" }}>
+                      <FontAwesomeIcon
+                        icon={faPersonCircleQuestion}
+                        beatFade
+                        style={{
+                          color: "white",
+                          marginRight: 8,
+                          fontSize: 20,
+                        }}
+                      />
+                      Choisir votre role
+                    </Label>
+                    <div className="d-flex justify-content-between">
+                      <Input
+                        type="select"
+                        value={isAdmin ? "admin" : "user"}
+                        onChange={toggleRole}
+                        style={{ width: 300 }}
+                      >
+                        <option value="user">Utilisateur</option>
+                        <option value="admin">Administrateur</option>
+                      </Input>
+                    </div>
+                  </FormGroup>
+                  <FormGroup style={{ paddingLeft: 95 }}>
+                    <Label style={{ color: "white" }}>
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        beatFade
+                        style={{ color: "white", marginRight: 8 }}
+                      />
+                      Nom d'utilisateur
+                    </Label>
+                    <div className="d-flex justify-content-between">
+                      <Input
+                        type="text"
+                        value={username}
+                        onChange={handleUsernameChange}
+                        style={{ width: 300 }}
+                      />
+                    </div>
+                  </FormGroup>
+                  <FormGroup style={{ paddingLeft: 95 }}>
+                    <Label style={{ color: "white" }}>
+                      <FontAwesomeIcon
+                        icon={faLock}
+                        beatFade
+                        style={{ color: "white", marginRight: 8 }}
+                      />
+                      Mot de passe
+                    </Label>
+                    <div className="d-flex justify-content-between">
+                      <Input
+                        value={password}
+                        onChange={handlePasswordChange}
+                        type={passwordShown ? "text" : "password"}
+                        style={{ width: 300 }}
+                      />
+                      <Button
+                        style={{
+                          color: "#6c757d",
+                          cursor: "pointer",
+                          position: "relative",
+                          right: 60,
+                          backgroundColor: "white",
+                          border: 0,
+                        }}
+                        onClick={togglePasswordVisiblity}
+                      >
+                        {eye}
+                      </Button>
+                    </div>
+                  </FormGroup>
+                  <FormGroup style={{ textAlign: "center" }}>
                     <Button
-                      style={{
-                        color: "black",
-                        cursor: "pointer",
-                        position: "relative",
-                        right: 60,
-                        backgroundColor: "beige",
-                        border: 0,
-                      }}
-                      onClick={togglePasswordVisiblity}
+                      block
+                      size="lg"
+                      style={{ backgroundColor: "white", cursor: "pointer" }}
+                      type="submit"
+                      disabled={!username || !password}
                     >
-                      {eye}
+                      <span style={{ color: "#6c757d" }}>
+                        Valider en tant que{" "}
+                        {isAdmin ? "administrateur" : "utilisateur"}
+                      </span>
                     </Button>
-                  </div>
-                </FormGroup>
-                <FormGroup style={{ textAlign: "center" }}>
-                  <Button
-                    size="lg"
-                    style={{ backgroundColor: "beige", cursor: "pointer" }}
-                    type="submit"
-                    disabled={!username || !password}
-                  >
-                    <span style={{ color: "black" }}>
-                      Valider en tant que{" "}
-                      {isAdmin ? "administrateur" : "utilisateur"}
-                    </span>
-                  </Button>
-                </FormGroup>
-              </Form>
+                  </FormGroup>
+                </Form>
+              </div>
             </div>
           </div>
         </div>
