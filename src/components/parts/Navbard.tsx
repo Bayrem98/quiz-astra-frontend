@@ -5,6 +5,7 @@ import { Alert } from "antd";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
+  Button,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
@@ -222,7 +223,13 @@ function Navbard() {
           toggle={() => setIsOpened(false)}
         >
           <Form onSubmit={(e) => logina(e)}>
-            <ModalHeader style={{ display: "flex", justifyContent: "center" }}>
+            <ModalHeader
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                backgroundColor: "#6c757d",
+              }}
+            >
               {errorMessage && (
                 <Alert
                   message=""
@@ -238,10 +245,32 @@ function Navbard() {
               )}
             </ModalHeader>
             <ModalBody>
-              <p className="modal-admin-title">Admin-connecte</p>
-              <span className="modal-admin-closeicon" onClick={handelClose}>
+              <span
+                className="modal-admin-closeicon"
+                onClick={handelClose}
+                style={{
+                  position: "relative",
+                  top: 0,
+                  left: 460,
+                  cursor: "pointer",
+                  fontSize: 20,
+                  color: "#6c757d",
+                }}
+              >
                 X
               </span>
+              <p
+                className="modal-admin-title"
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  color: "#6c757d",
+                  fontSize: 20,
+                }}
+              >
+                Admin-connecte
+              </p>
+
               <FormGroup floating>
                 <Input
                   value={username}
@@ -265,6 +294,13 @@ function Navbard() {
                 <i
                   className="modal-admin-eyeicon"
                   onClick={togglePasswordVisiblity}
+                  style={{
+                    position: "relative",
+                    left: 435,
+                    bottom: 38,
+                    color: "black",
+                    cursor: "pointer",
+                  }}
                 >
                   {eye}
                 </i>
@@ -274,16 +310,20 @@ function Navbard() {
               </FormGroup>
             </ModalBody>
             <ModalFooter>
-              <button
+              <Button
                 className="modal-admin-button1"
                 type="submit"
                 disabled={!username || !password}
               >
                 Confirm
-              </button>
-              <button className="modal-admin-button2" onClick={handleReset}>
+              </Button>
+              <Button
+                className="modal-admin-button2"
+                onClick={handleReset}
+                style={{ backgroundColor: "black" }}
+              >
                 Annuler
-              </button>
+              </Button>
             </ModalFooter>
           </Form>
         </Modal>
