@@ -36,54 +36,71 @@ const Profil = () => {
 
   return (
     <>
-      <img
-        src="/image/pngwing.com.png"
-        alt="."
-        width={40}
-        onClick={() => navigate(-1)}
-        style={{ cursor: "pointer", marginLeft: 10 }}
-      />
-      <div className="d-flex justify-content-center">
-        <Card
-          style={{
-            width: "90%",
-            height: "100%",
-            backgroundColor: "lightgray",
-            marginTop: 10,
-          }}
+      <div
+        style={{
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
+        }}
+      >
+        <img
+          src="/image/pngwing.com.png"
+          alt="."
+          width={40}
+          onClick={() => navigate(-1)}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 10 }}
+        />
+        <div
+          className="d-flex justify-content-center"
+          style={{ paddingBottom: 360 }}
         >
-          <CardHeader style={{ textAlign: "center", fontWeight: "bold" }}>
-            Nom d'utilisateur: {userData?.username}
-          </CardHeader>
-          <CardBody>
-            <h6>*Tous Vous Réponses de Quiz :</h6>
-            <br />
-            {quizResponses.length > 0 ? (
-              <Table bordered hover responsive>
-                <thead>
-                  <tr>
-                    <th>QuizType</th>
-                    <th>Categorie</th>
-                    <th>Question</th>
-                    <th>Réponse</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {quizResponses.map((response, index) => (
-                    <tr key={index}>
-                      <td>{response.quizType}</td>
-                      <td>{response.category}</td>
-                      <td>{response.question}</td>
-                      <td>{response.value}</td>
+          <Card
+            style={{
+              width: "90%",
+              backgroundColor: "lightgray",
+              marginTop: 10,
+              border: 0,
+            }}
+          >
+            <CardHeader
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                color: "white",
+                backgroundColor: "#6c757d",
+              }}
+            >
+              Nom d'utilisateur: {userData?.username}
+            </CardHeader>
+            <CardBody>
+              <h6>*Tous Vous Réponses de Quiz :</h6>
+              <br />
+              {quizResponses.length > 0 ? (
+                <Table bordered hover responsive>
+                  <thead>
+                    <tr>
+                      <th>QuizType</th>
+                      <th>Catégorie</th>
+                      <th>Question</th>
+                      <th>Réponse</th>
                     </tr>
-                  ))}
-                </tbody>
-              </Table>
-            ) : (
-              <p>Aucune réponse de quiz disponible.</p>
-            )}
-          </CardBody>
-        </Card>
+                  </thead>
+                  <tbody>
+                    {quizResponses.map((response, index) => (
+                      <tr key={index}>
+                        <td>{response.quizType}</td>
+                        <td>{response.category}</td>
+                        <td>{response.question}</td>
+                        <td>{response.value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              ) : (
+                <p>Aucune réponse de quiz disponible.</p>
+              )}
+            </CardBody>
+          </Card>
+        </div>
       </div>
     </>
   );

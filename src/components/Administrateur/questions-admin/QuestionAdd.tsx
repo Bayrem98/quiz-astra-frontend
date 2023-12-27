@@ -2,6 +2,7 @@ import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import {
+  Button,
   Form,
   FormGroup,
   Input,
@@ -69,9 +70,9 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
 
   return (
     <>
-      <button className="addQuestionbutton" onClick={() => setIsOpened(true)}>
-        <FontAwesomeIcon className="plus" icon={faAdd} color="black" />
-      </button>
+      <Button onClick={() => setIsOpened(true)}>
+        <FontAwesomeIcon icon={faAdd} color="white" />
+      </Button>
       <Modal
         centered
         scrollable

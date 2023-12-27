@@ -22,9 +22,9 @@ const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
 
   return (
     <>
-      <button className="btn3-delete" onClick={() => setIsOpened(true)}>
+      <Button onClick={() => setIsOpened(true)} color="danger">
         <FontAwesomeIcon icon={faTrash} />
-      </button>
+      </Button>
       <Modal
         className="font-['Helvetica']"
         centered
