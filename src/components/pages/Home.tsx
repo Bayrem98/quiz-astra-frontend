@@ -3,24 +3,31 @@ import { Card, CardBody, CardHeader } from "reactstrap";
 const Home = () => {
   return (
     <>
-      <div className="d-flex justify-content-center">
+      <div
+        className="d-flex justify-content-center"
+        style={{
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
+        }}
+      >
         <Card
           outline
           style={{
             width: "50rem",
             backgroundColor: "gray",
             color: "white",
-            marginTop: 100,
+            marginTop: 120,
+            marginBottom: 180,
             border: 0,
-            fontSize: 22,
+            fontSize: 20,
           }}
         >
           <CardHeader
             style={{
               textAlign: "center",
-              backgroundColor: "lightgray",
+              backgroundColor: "#6c757d",
               color: "white",
-              fontSize: 30,
+              fontSize: 28,
             }}
           >
             DESCRIPTION NOTRE APPLICATION
