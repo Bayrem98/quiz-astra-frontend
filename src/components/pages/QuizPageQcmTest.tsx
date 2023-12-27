@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Question from "../../@types/Question";
 import { getQuestions } from "../../actions/Questions/action";
-import { Button, Card, CardBody, CardHeader } from "reactstrap";
+import { Button, Card, CardBody, CardHeader, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -115,27 +115,42 @@ const QuizPageQcmTest = () => {
 
   return (
     <>
-      <div style={{ marginLeft: 30, marginRight: 30, marginTop: 10 }}>
+      <div
+        style={{
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
+          paddingBottom: 50,
+        }}
+      >
         <img
           src="/image/pngwing.com.png"
           alt="."
           width={40}
           onClick={() => navigate(-1)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 10 }}
         />
-        <Card>
-          <CardHeader style={{ textAlign: "center" }}>
-            Test-QCM: Il faut cocher la bonne réponse pour chaque question.
+        <Card style={{ marginLeft: 180, marginRight: 180, border: 0 }}>
+          <CardHeader
+            style={{
+              textAlign: "center",
+              backgroundColor: "#6c757d",
+              color: "white",
+              fontSize: 20,
+            }}
+          >
+            QCM-Quiz
           </CardHeader>
           <CardBody>
+            <h5>Il faut cocher une bonne réponse pour chaque question</h5>
+            <br />
             {Array.isArray(questions) && questions.length ? (
               questions.map((question) => (
                 <div className="Questionstable-table-tbody" key={question._id}>
-                  <p>*-{question.question}</p>
+                  <p>*{question.question}</p>
                   <h6>Les réponses:</h6>
                   {/* Bouton radio pour la première réponse incorrecte */}
-                  <label>
-                    <input
+                  <label style={{ cursor: "pointer" }}>
+                    <Input
                       type="radio"
                       name={`question_${question._id}`}
                       value={question.incorrect_answer1}
@@ -145,26 +160,28 @@ const QuizPageQcmTest = () => {
                           question.incorrect_answer1
                         )
                       }
+                      style={{ marginRight: 10, cursor: "pointer" }}
                     />
                     {question.incorrect_answer1}
                   </label>
                   <br />
                   {/* Bouton radio pour la réponse correcte */}
-                  <label>
-                    <input
+                  <label style={{ cursor: "pointer" }}>
+                    <Input
                       type="radio"
                       name={`question_${question._id}`}
                       value={question.correct_answer}
                       onChange={() =>
                         handleRadioChange(question._id, question.correct_answer)
                       }
+                      style={{ marginRight: 10, cursor: "pointer" }}
                     />
                     {question.correct_answer}
                   </label>
                   <br />
                   {/* Bouton radio pour la deuxième réponse incorrecte */}
-                  <label>
-                    <input
+                  <label style={{ cursor: "pointer" }}>
+                    <Input
                       type="radio"
                       name={`question_${question._id}`}
                       value={question.incorrect_answer2}
@@ -174,6 +191,7 @@ const QuizPageQcmTest = () => {
                           question.incorrect_answer2
                         )
                       }
+                      style={{ marginRight: 10, cursor: "pointer" }}
                     />
                     {question.incorrect_answer2}
                   </label>
@@ -194,10 +212,17 @@ const QuizPageQcmTest = () => {
               </div>
             )}
             <br />
-            {/* Bouton d'enregistrement des réponses */}
-            <Button color="primary" onClick={handleSaveAnswers}>
-              Enregistrer les réponses
-            </Button>
+            <div
+              className="d-flex justify-content-between"
+              style={{ marginBottom: 10 }}
+            >
+              <p style={{ fontWeight: "bold" }}>
+                Vous avez terminer le quiz Bonne Chance...
+              </p>
+              <Button color="success" onClick={handleSaveAnswers}>
+                Enregistrer Vos Réponses
+              </Button>
+            </div>
           </CardBody>
         </Card>
       </div>
