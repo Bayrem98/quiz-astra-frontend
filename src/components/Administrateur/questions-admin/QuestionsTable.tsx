@@ -33,7 +33,7 @@ const QuestionsTable = (props: Props) => {
         </div>
         <br />
         <div style={{ marginLeft: 50, marginRight: 50 }}>
-          <Table className="Questionstable-table" bordered responsive hover>
+          <Table bordered responsive hover>
             <thead>
               <tr>
                 <th>Catégorie</th>
@@ -75,7 +75,7 @@ const QuestionsTable = (props: Props) => {
                   >
                     <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                     <br />
-                    No data in table...
+                    Pas des données...
                   </td>
                 </tr>
               )}

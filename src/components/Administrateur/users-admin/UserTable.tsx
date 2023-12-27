@@ -18,15 +18,20 @@ const UsersTable = (props: Props) => {
 
   return (
     <div
-      className="users-table-container"
-      style={{ marginTop: 50, marginLeft: 50, marginRight: 50 }}
+      style={{
+        backgroundImage: "url(/image/background-home.jpg)",
+        backgroundSize: "cover",
+      }}
     >
-      <div className="d-flex justify-content-between">
-        <h2>Tableau des Utilisateurs</h2>
+      <div
+        className="d-flex justify-content-between"
+        style={{ paddingTop: 10, paddingLeft: 25, paddingRight: 25 }}
+      >
+        <h3 style={{ color: "white" }}>Tableau des Utilisateurs</h3>
         <UserAdd refresh={() => getUsers(setUsers)} />
       </div>
       <br />
-      <div>
+      <div style={{ marginLeft: 50, marginRight: 50 }}>
         <Table bordered responsive hover>
           <thead>
             <tr>

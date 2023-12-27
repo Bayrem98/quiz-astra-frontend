@@ -65,13 +65,8 @@ const UserAdd = (props: UserAddPropsType) => {
 
   return (
     <>
-      <Button
-        style={{ backgroundColor: "#ddd9d5", borderRadius: 10 }}
-        className="mb-2"
-        onClick={() => setIsOpened(true)}
-      >
-        <span style={{ color: "black" }}>Ajouter Utilisateur</span>
-        <FontAwesomeIcon color="black" icon={faAdd} />
+       <Button onClick={() => setIsOpened(true)}>
+        <FontAwesomeIcon icon={faAdd} color="white" />
       </Button>
       <Modal
         centered

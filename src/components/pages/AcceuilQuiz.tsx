@@ -40,7 +40,7 @@ const AccueilQuiz = () => {
                 des planètes et défiez-vous avec des questions stimulantes sur
                 l'astrologie.
               </CardText>
-              <ButtonGroup>
+              <ButtonGroup style={{paddingTop: 16}}>
                 <Link to={"quizpageqcmtest/astrologie/qcm"}>
                   <Button
                     style={{
@@ -173,7 +173,7 @@ const AccueilQuiz = () => {
                 l'épreuve votre connaissance des jeux de tarot et défiez-vous
                 avec des questions intrigantes.
               </CardText>
-              <ButtonGroup>
+              <ButtonGroup style={{paddingTop: 19}}>
                 <Link to={"quizpageqcmtest/tarologie/qcm"}>
                   <Button
                     style={{
