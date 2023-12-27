@@ -17,7 +17,7 @@ const AccueilQuiz = () => {
           backgroundSize: "cover",
         }}
       >
-        <h2 style={{ textAlign: "center", paddingTop: 15, color: "white" }}>
+        <h2 style={{ textAlign: "center", paddingTop: 100, color: "white" }}>
           Pour commencer le quiz choissir un théme
         </h2>
         <div className="d-flex justify-content-center">

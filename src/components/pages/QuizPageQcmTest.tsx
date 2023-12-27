@@ -127,7 +127,7 @@ const QuizPageQcmTest = () => {
           alt="."
           width={40}
           onClick={() => navigate(-1)}
-          style={{ cursor: "pointer", marginLeft: 10, marginTop: 10 }}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />
         <Card style={{ marginLeft: 180, marginRight: 180, border: 0 }}>
           <CardHeader

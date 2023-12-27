@@ -47,7 +47,7 @@ const Profil = () => {
           alt="."
           width={40}
           onClick={() => navigate(-1)}
-          style={{ cursor: "pointer", marginLeft: 10, marginTop: 10 }}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />
         <div
           className="d-flex justify-content-center"

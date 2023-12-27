@@ -25,13 +25,13 @@ const UsersTable = (props: Props) => {
     >
       <div
         className="d-flex justify-content-between"
-        style={{ paddingTop: 10, paddingLeft: 25, paddingRight: 25 }}
+        style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
       >
         <h3 style={{ color: "white" }}>Tableau des Utilisateurs</h3>
         <UserAdd refresh={() => getUsers(setUsers)} />
       </div>
       <br />
-      <div style={{ marginLeft: 50, marginRight: 50 }}>
+      <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 260 }}>
         <Table bordered responsive hover>
           <thead>
             <tr>

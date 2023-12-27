@@ -116,15 +116,14 @@ function Navbard() {
   const userId = localStorage.getItem("user_id");
 
   return (
-    <div>
+    <>
       <Navbar
-        className="my-2"
         color="secondary"
         dark
-        style={{ position: "relative", top: 0 }}
+        style={{ position: "fixed", top: 0, zIndex: 999, width: "100%" }}
       >
         <NavbarBrand href="/home">Quiz-App</NavbarBrand>
-        <div className="d-flex justify-content" style={{ marginLeft: -200 }}>
+        <div className="d-flex justify-content" style={{ marginRight: 200 }}>
           <NavLink
             to={"/accueilquiz"}
             style={{
@@ -177,12 +176,17 @@ function Navbard() {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <button
-                style={{ marginLeft: 10, border: 0 }}
+              <Button
+                style={{
+                  marginLeft: 15,
+                  border: 0,
+                  backgroundColor: "white",
+                  color: "#6c757d",
+                }}
                 onClick={logoutAdmin}
               >
                 Logout-Admin
-              </button>
+              </Button>
             </>
           ) : (
             <>
@@ -201,18 +205,24 @@ function Navbard() {
             </>
           )}
         </div>
-        <NavLink
-          to={"#"}
+        <Button
           style={{
-            textDecoration: "none",
-            color: "white",
-            fontSize: 18,
-            marginRight: 10,
+            border: 0,
+            backgroundColor: "white",
+            marginRight: 5,
           }}
-          onClick={logout}
         >
-          Déconnexion
-        </NavLink>
+          <NavLink
+            to={"#"}
+            style={{
+              textDecoration: "none",
+              color: "#6c757d",
+            }}
+            onClick={logout}
+          >
+            Déconnexion
+          </NavLink>
+        </Button>
       </Navbar>
 
       {isOpened ? (
@@ -314,13 +324,14 @@ function Navbard() {
                 className="modal-admin-button1"
                 type="submit"
                 disabled={!username || !password}
+                style={{ border: 0 }}
               >
                 Confirm
               </Button>
               <Button
                 className="modal-admin-button2"
                 onClick={handleReset}
-                style={{ backgroundColor: "black" }}
+                style={{ backgroundColor: "black", border: 0 }}
               >
                 Annuler
               </Button>
@@ -330,7 +341,7 @@ function Navbard() {
       ) : (
         <></>
       )}
-    </div>
+    </>
   );
 }
 
