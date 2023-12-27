@@ -115,26 +115,37 @@ const QuizPageQrTest = () => {
 
   return (
     <>
-      <div style={{ marginLeft: 30, marginRight: 30, marginTop: 10 }}>
+      <div
+        style={{
+          backgroundImage: "url(/image/background-home.jpg)",
+          backgroundSize: "cover",
+          paddingBottom: 50,
+        }}
+      >
         <img
           src="/image/pngwing.com.png"
           alt="."
           width={40}
           onClick={() => navigate(-1)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", marginLeft: 10, marginTop: 10 }}
         />
-        <Card>
-          <CardHeader style={{ textAlign: "center" }}>
-            Test-Question et reponse: Il faut repondre dans la case pour chaque
-            question.
+        <Card style={{ marginLeft: 180, marginRight: 180, border: 0 }}>
+          <CardHeader
+            style={{
+              textAlign: "center",
+              backgroundColor: "#6c757d",
+              color: "white",
+              fontSize: 20,
+            }}
+          >
+            Question et Réponse - Quiz
           </CardHeader>
           <CardBody>
             {Array.isArray(questions) && questions.length ? (
               questions.map((question) => (
                 <div className="Questionstable-table-tbody" key={question._id}>
-                  <p>*-{question.question}</p>
+                  <p>*{question.question}</p>
                   <h6>La réponse:</h6>
-                  {/* Bouton radio pour la réponse correcte */}
                   <label>
                     <Input
                       type="textarea"
@@ -153,19 +164,26 @@ const QuizPageQrTest = () => {
               <div>
                 <span
                   className="text-center"
-                  style={{ position: "relative", left: 400 }}
+                  style={{ position: "relative", left: 380 }}
                 >
-                  <FontAwesomeIcon icon={faBoxOpen} size="8x" />
+                  <FontAwesomeIcon icon={faBoxOpen} size="6x" />
                   <br />
                   Pas des données...
                 </span>
               </div>
             )}
             <br />
-            {/* Bouton d'enregistrement des réponses */}
-            <Button color="primary" onClick={handleSaveAnswers}>
-              Enregistrer les réponses
-            </Button>
+            <div
+              className="d-flex justify-content-between"
+              style={{ marginBottom: 10 }}
+            >
+              <p style={{ fontWeight: "bold" }}>
+                Vous avez terminer le quiz Bonne Chance...
+              </p>
+              <Button color="success" onClick={handleSaveAnswers}>
+                Enregistrer Vos Réponses
+              </Button>
+            </div>
           </CardBody>
         </Card>
       </div>

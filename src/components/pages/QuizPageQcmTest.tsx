@@ -138,7 +138,7 @@ const QuizPageQcmTest = () => {
               fontSize: 20,
             }}
           >
-            QCM-Quiz
+            QCM - Quiz
           </CardHeader>
           <CardBody>
             <h5>Il faut cocher une bonne réponse pour chaque question</h5>
@@ -148,7 +148,6 @@ const QuizPageQcmTest = () => {
                 <div className="Questionstable-table-tbody" key={question._id}>
                   <p>*{question.question}</p>
                   <h6>Les réponses:</h6>
-                  {/* Bouton radio pour la première réponse incorrecte */}
                   <label style={{ cursor: "pointer" }}>
                     <Input
                       type="radio"
