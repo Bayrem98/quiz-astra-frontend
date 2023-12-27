@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardHeader, Table } from "reactstrap";
 import User from "../../@types/User";
 import { getUser } from "../../actions/Users/action";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const Profil = () => {
   let { userId } = useParams();
-  const [user, setUser] = useState<User>();
+  const [userData, setUserData] = useState<User | null>(null);
+  const [quizResponses, setQuizResponses] = useState<Array<any>>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       if (userId) {
-        getUser(userId, setUser);
+        getUser(userId, setUserData);
+        await handleShowAnswers();
       }
-      await handleShowAnswers();
     };
 
     fetchData();
@@ -25,31 +27,38 @@ const Profil = () => {
     axios
       .get(`http://localhost:3000/user/quizanswers/${userId}`)
       .then((response) => {
-        setUser(response.data);
+        setQuizResponses(response.data.quizResponses || []);
       })
       .catch((error) => {
         console.error("Erreur lors de l'affichage des réponses :", error);
       });
   };
 
-  return user ? (
+  return (
     <>
+      <img
+        src="/image/pngwing.com.png"
+        alt="."
+        width={40}
+        onClick={() => navigate(-1)}
+        style={{ cursor: "pointer", marginLeft: 10 }}
+      />
       <div className="d-flex justify-content-center">
         <Card
           style={{
-            width: 800,
+            width: "90%",
             height: "100%",
             backgroundColor: "lightgray",
-            marginTop: 30,
+            marginTop: 10,
           }}
         >
-          <CardHeader style={{ textAlign: "center" }}>
-            Nom d'utilisateur: {user.username}
+          <CardHeader style={{ textAlign: "center", fontWeight: "bold" }}>
+            Nom d'utilisateur: {userData?.username}
           </CardHeader>
           <CardBody>
             <h6>*Tous Vous Réponses de Quiz :</h6>
             <br />
-            {user.quizResponses && user.quizResponses.length > 0 ? (
+            {quizResponses.length > 0 ? (
               <Table bordered hover responsive>
                 <thead>
                   <tr>
@@ -60,7 +69,7 @@ const Profil = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {user.quizResponses.map((response, index) => (
+                  {quizResponses.map((response, index) => (
                     <tr key={index}>
                       <td>{response.quizType}</td>
                       <td>{response.category}</td>
@@ -77,8 +86,6 @@ const Profil = () => {
         </Card>
       </div>
     </>
-  ) : (
-    <></>
   );
 };
 
