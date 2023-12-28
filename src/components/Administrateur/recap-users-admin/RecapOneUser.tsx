@@ -85,6 +85,7 @@ const RecapOneUser = () => {
         note: note[response.question],
       })),
     };
+    console.log(updatedUser)
     axios
       .put(`http://localhost:3000/user/updateanswers/${userId}`, updatedUser)
       .then((response) => {
@@ -146,7 +147,10 @@ const RecapOneUser = () => {
           style={{ marginLeft: 20, marginRight: 20 }}
         >
           <h3 style={{ color: "white" }}>
-            Recap Tous Les Quiz pour {user._id && user.username}
+            Recap Tous Les Quiz pour{" "}
+            <span style={{ color: "red", textDecoration: "underline" }}>
+              {user._id && user.username}
+            </span>
           </h3>
           <span style={{ fontWeight: "bold", color: "white", fontSize: 20 }}>
             Score: {user.noteGlobal}/
