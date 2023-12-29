@@ -18,6 +18,7 @@ const QuizPageQcmTest = () => {
   const [questionsText, setQuestionsText] = useState<{ [key: string]: string }>(
     {}
   );
+  const [displayedQuestions, setDisplayedQuestions] = useState<Question[]>([]);
 
   useEffect(() => {
     getQuestions({ category: categ, quizType: quizTy }, (questionsData) => {
@@ -35,6 +36,8 @@ const QuizPageQcmTest = () => {
       }, {} as { [key: string]: string });
 
       setQuestionsText(questionsTextData);
+      const shuffledQuestions = questionsData.sort(() => Math.random() - 0.5);
+      setDisplayedQuestions(shuffledQuestions.slice(0, 5));
     });
   }, [categ, quizTy]);
 
@@ -143,8 +146,8 @@ const QuizPageQcmTest = () => {
           <CardBody>
             <h5>Il faut cocher une bonne réponse pour chaque question</h5>
             <br />
-            {Array.isArray(questions) && questions.length ? (
-              questions.map((question) => (
+            {Array.isArray(displayedQuestions) && displayedQuestions.length ? (
+              displayedQuestions.map((question) => (
                 <div className="Questionstable-table-tbody" key={question._id}>
                   <p>*{question.question}</p>
                   <h6>Les réponses:</h6>
@@ -161,7 +164,7 @@ const QuizPageQcmTest = () => {
                       }
                       style={{ marginRight: 10, cursor: "pointer" }}
                     />
-                    {question.incorrect_answer1}
+                    a. {question.incorrect_answer1}
                   </label>
                   <br />
                   {/* Bouton radio pour la réponse correcte */}
@@ -175,7 +178,7 @@ const QuizPageQcmTest = () => {
                       }
                       style={{ marginRight: 10, cursor: "pointer" }}
                     />
-                    {question.correct_answer}
+                    b. {question.correct_answer}
                   </label>
                   <br />
                   {/* Bouton radio pour la deuxième réponse incorrecte */}
@@ -192,7 +195,7 @@ const QuizPageQcmTest = () => {
                       }
                       style={{ marginRight: 10, cursor: "pointer" }}
                     />
-                    {question.incorrect_answer2}
+                    c. {question.incorrect_answer2}
                   </label>
                   <br />
                   <br />

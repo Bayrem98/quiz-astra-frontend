@@ -18,6 +18,7 @@ const QuizPageQrTest = () => {
   const [questionsText, setQuestionsText] = useState<{ [key: string]: string }>(
     {}
   );
+  const [displayedQuestions, setDisplayedQuestions] = useState<Question[]>([]);
 
   useEffect(() => {
     getQuestions({ category: categ, quizType: quizTy }, (questionsData) => {
@@ -35,6 +36,8 @@ const QuizPageQrTest = () => {
       }, {} as { [key: string]: string });
 
       setQuestionsText(questionsTextData);
+      const shuffledQuestions = questionsData.sort(() => Math.random() - 0.5);
+      setDisplayedQuestions(shuffledQuestions.slice(0, 5));
     });
   }, [categ, quizTy]);
 
@@ -141,8 +144,8 @@ const QuizPageQrTest = () => {
             Question et Réponse - Quiz
           </CardHeader>
           <CardBody>
-            {Array.isArray(questions) && questions.length ? (
-              questions.map((question) => (
+            {Array.isArray(displayedQuestions) && displayedQuestions.length ? (
+              displayedQuestions.map((question) => (
                 <div className="Questionstable-table-tbody" key={question._id}>
                   <p>*{question.question}</p>
                   <h6>La réponse:</h6>
