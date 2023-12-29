@@ -17,7 +17,7 @@ const Home = () => {
             backgroundColor: "gray",
             color: "white",
             marginTop: 190,
-            marginBottom: 180,
+            marginBottom: 220,
             border: 0,
             fontSize: 20,
           }}

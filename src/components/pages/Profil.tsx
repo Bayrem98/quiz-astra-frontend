@@ -51,7 +51,7 @@ const Profil = () => {
         />
         <div
           className="d-flex justify-content-center"
-          style={{ paddingBottom: 360 }}
+          style={{ paddingBottom: 560 }}
         >
           <Card
             style={{
@@ -69,7 +69,13 @@ const Profil = () => {
                 backgroundColor: "#6c757d",
               }}
             >
-              Nom d'utilisateur: {userData?.username}
+              <div className="d-flex justify-content-between">
+                <div> Nom d'utilisateur: {userData?.username}</div>
+                <div>
+                  Note: {userData?.noteGlobal}/
+                  {quizResponses && quizResponses.length}
+                </div>
+              </div>
             </CardHeader>
             <CardBody>
               <h6>*Tous Vous Réponses de Quiz :</h6>
@@ -82,6 +88,7 @@ const Profil = () => {
                       <th>Catégorie</th>
                       <th>Question</th>
                       <th>Réponse</th>
+                      <th>Correction</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -91,6 +98,7 @@ const Profil = () => {
                         <td>{response.category}</td>
                         <td>{response.question}</td>
                         <td>{response.value}</td>
+                        <td>{response.correctionQuestion}</td>
                       </tr>
                     ))}
                   </tbody>

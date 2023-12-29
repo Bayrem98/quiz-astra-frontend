@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Alert } from "antd";
@@ -23,6 +23,10 @@ import {
 } from "reactstrap";
 import { v4 as uuidv4 } from "uuid";
 import Cookies from "js-cookie";
+import User from "../../@types/User";
+import { getUser } from "../../actions/Users/action";
+import Adminuser from "../../@types/Adminuser";
+import { getAdminuser } from "../../actions/Adminusers/action";
 
 function Navbard() {
   const [isOpened, setIsOpened] = useState(false);
@@ -30,6 +34,20 @@ function Navbard() {
   const [password, setPassword] = useState<string>("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [userData, setUserData] = useState<User | null>(null);
+  const [adminuser, setAdminuser] = useState<Adminuser | null>(null);
+
+  useEffect(() => {
+    if (userId) {
+      getUser(userId, setUserData);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      getAdminuser(userId, setAdminuser);
+    }
+  }, []);
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -123,14 +141,14 @@ function Navbard() {
         style={{ position: "fixed", top: 0, zIndex: 999, width: "100%" }}
       >
         <NavbarBrand href="/home">Quiz-App</NavbarBrand>
-        <div className="d-flex justify-content" style={{ marginRight: 200 }}>
+        <div className="d-flex justify-content" style={{ marginRight: 250 }}>
           <NavLink
             to={"/accueilquiz"}
             style={{
               textDecoration: "none",
               color: "white",
               fontSize: 18,
-              marginRight: 100,
+              marginRight: 70,
             }}
           >
             Accueil
@@ -141,7 +159,7 @@ function Navbard() {
               textDecoration: "none",
               color: "white",
               fontSize: 18,
-              marginRight: 100,
+              marginRight: 70,
             }}
           >
             Profil
@@ -195,7 +213,6 @@ function Navbard() {
                   textDecoration: "none",
                   color: "white",
                   fontSize: 18,
-                  marginRight: 100,
                   cursor: "pointer",
                 }}
                 onClick={toggleModal}
@@ -205,24 +222,48 @@ function Navbard() {
             </>
           )}
         </div>
-        <Button
-          style={{
-            border: 0,
-            backgroundColor: "white",
-            marginRight: 5,
-          }}
-        >
-          <NavLink
-            to={"#"}
+        <UncontrolledDropdown inNavbar>
+          <DropdownToggle
+            nav
+            caret
             style={{
               textDecoration: "none",
-              color: "#6c757d",
+              color: "white",
+              fontSize: 18,
+              marginRight: 110,
             }}
-            onClick={logout}
           >
-            Déconnexion
-          </NavLink>
-        </Button>
+            <img src="/image/avatar-profil-user.jpg" alt="." width={25} />
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>
+              <span style={{ fontSize: 13, color: "black" }}>
+                Profil:
+                <span
+                  style={{
+                    color: "red",
+                    fontSize: 14,
+                  }}
+                >
+                  {" "}
+                  {userData?.username || adminuser?.username}
+                </span>
+              </span>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink
+                to={"#"}
+                style={{
+                  textDecoration: "none",
+                  color: "#6c757d",
+                }}
+                onClick={logout}
+              >
+                Déconnexion
+              </NavLink>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
       </Navbar>
 
       {isOpened ? (

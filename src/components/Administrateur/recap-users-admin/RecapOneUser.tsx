@@ -33,7 +33,7 @@ const RecapOneUser = () => {
           ? JSON.parse(storedNote)
           : {};
 
-        let totalNote = 0; // Variable to store the sum of notes
+        let totalNote: number = 0; // Variable to store the sum of notes
 
         if (response.data && response.data.quizResponses) {
           response.data.quizResponses.forEach((response: QuizResponse) => {
@@ -53,7 +53,7 @@ const RecapOneUser = () => {
         // Update the user object with the totalNote
         const updatedUser = {
           ...response.data,
-          noteGlobal: totalNote.toString(),
+          noteGlobal: totalNote,
         };
         setUser(updatedUser);
       } catch (error) {
@@ -85,7 +85,7 @@ const RecapOneUser = () => {
         note: note[response.question],
       })),
     };
-    console.log(updatedUser)
+    console.log(updatedUser);
     axios
       .put(`http://localhost:3000/user/updateanswers/${userId}`, updatedUser)
       .then((response) => {
@@ -154,7 +154,8 @@ const RecapOneUser = () => {
           </h3>
           <span style={{ fontWeight: "bold", color: "white", fontSize: 20 }}>
             Score: {user.noteGlobal}/
-            {user.quizResponses && user.quizResponses.length}
+            {user.quizResponses && user.quizResponses.length}-(Nombre des
+            questions)
           </span>
           <Button onClick={handelCorrectionResponses}>
             <FontAwesomeIcon icon={faSave} color="white" beatFade size="2xl" />

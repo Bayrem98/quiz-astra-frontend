@@ -31,7 +31,7 @@ const RecapAllUsers = (props: Props) => {
           Recap des Utilisateurs
         </h3>
         <br />
-        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 260 }}>
+        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 595 }}>
           <Table bordered responsive hover>
             <thead>
               <tr>
