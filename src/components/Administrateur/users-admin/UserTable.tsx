@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ButtonGroup, Table } from "reactstrap";
+import { ButtonGroup, Input, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import UserDelete from "./UserDelete";
@@ -11,6 +11,7 @@ interface Props {}
 
 const UsersTable = (props: Props) => {
   const [users, setUsers] = useState<User[]>([]);
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     getUsers(setUsers);
@@ -28,6 +29,14 @@ const UsersTable = (props: Props) => {
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
       >
         <h3 style={{ color: "white" }}>Tableau des Utilisateurs</h3>
+        <div className="">
+          <Input
+            type="text"
+            placeholder="Chercher içi..."
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
         <UserAdd refresh={() => getUsers(setUsers)} />
       </div>
       <br />
@@ -41,19 +50,23 @@ const UsersTable = (props: Props) => {
           </thead>
           <tbody>
             {users.length ? (
-              users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.username}</td>
-                  <td style={{ textAlign: "center" }}>
-                    <ButtonGroup>
-                      <UserDelete
-                        user={user}
-                        refresh={() => getUsers(setUsers)}
-                      />
-                    </ButtonGroup>
-                  </td>
-                </tr>
-              ))
+              users
+                .filter((user) =>
+                  user.username.toLowerCase().includes(filter.toLowerCase())
+                )
+                .map((user) => (
+                  <tr key={user._id}>
+                    <td>{user.username}</td>
+                    <td style={{ textAlign: "center" }}>
+                      <ButtonGroup>
+                        <UserDelete
+                          user={user}
+                          refresh={() => getUsers(setUsers)}
+                        />
+                      </ButtonGroup>
+                    </td>
+                  </tr>
+                ))
             ) : (
               <tr>
                 <td colSpan={2} className="text-center">
