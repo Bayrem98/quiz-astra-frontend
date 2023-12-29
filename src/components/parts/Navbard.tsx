@@ -65,17 +65,20 @@ function Navbard() {
           >
             Accueil
           </NavLink>
-          <NavLink
-            to={`/profil/${userId}`}
-            style={{
-              textDecoration: "none",
-              color: "white",
-              fontSize: 18,
-              marginRight: 150,
-            }}
-          >
-            Profil
-          </NavLink>
+
+          {userData && (
+            <NavLink
+              to={`/profil/${userId}`}
+              style={{
+                textDecoration: "none",
+                color: "white",
+                fontSize: 18,
+                marginRight: 150,
+              }}
+            >
+              Profil
+            </NavLink>
+          )}
 
           {Cookies.get("access_token") ? (
             <>
@@ -119,12 +122,12 @@ function Navbard() {
               textDecoration: "none",
               color: "white",
               fontSize: 18,
-              marginRight: 110,
+              marginRight: 10,
             }}
           >
             <img src="/image/avatar-profil-user.jpg" alt="." width={25} />
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu end>
             <DropdownItem>
               <span style={{ fontSize: 13, color: "black" }}>
                 Profil:
@@ -144,7 +147,7 @@ function Navbard() {
                 to={"#"}
                 style={{
                   textDecoration: "none",
-                  color: "#6c757d",
+                  color: "black",
                 }}
                 onClick={logout}
               >
