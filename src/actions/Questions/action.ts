@@ -6,7 +6,7 @@ export function getQuestions(
   callback: (data: Question[]) => void
 ) {
   axios
-    .get(`http://localhost:3000/question`, {
+    .get(`${process.env.REACT_APP_API_URL}/question`, {
       params: query,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -22,7 +22,7 @@ export function getQuestions(
 
 export function getQuestion(id: string, callback: (data: Question) => void) {
   axios
-    .get(`http://localhost:3000/question/` + id, {
+    .get(`${process.env.REACT_APP_API_URL}/question/` + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -37,7 +37,7 @@ export function getQuestion(id: string, callback: (data: Question) => void) {
 
 export function addquestion(question: Question, callback: () => void) {
   axios
-    .post(`http://localhost:3000/question`, question)
+    .post(`${process.env.REACT_APP_API_URL}/question`, question)
     .then(() => {
       callback();
     })
@@ -48,7 +48,7 @@ export function addquestion(question: Question, callback: () => void) {
 
 export function deleteQuestions(question: Question, callback: () => void) {
   axios
-    .delete(`http://localhost:3000/question/${question._id}`)
+    .delete(`${process.env.REACT_APP_API_URL}/question/${question._id}`)
     .then(() => {
       callback();
     })

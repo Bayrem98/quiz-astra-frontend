@@ -25,7 +25,7 @@ const Profil = () => {
 
   const handleShowAnswers = () => {
     axios
-      .get(`http://localhost:3000/user/quizanswers/${userId}`)
+      .get(`${process.env.REACT_APP_API_URL}/user/quizanswers/${userId}`)
       .then((response) => {
         setQuizResponses(response.data.quizResponses || []);
       })

@@ -18,7 +18,7 @@ const RecapOneUser = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/user/quizanswers/${userId}`
+          `${process.env.REACT_APP_API_URL}/user/quizanswers/${userId}`
         );
         setUser(response.data);
 
@@ -87,7 +87,7 @@ const RecapOneUser = () => {
     };
     console.log(updatedUser);
     axios
-      .put(`http://localhost:3000/user/updateanswers/${userId}`, updatedUser)
+      .put(`${process.env.REACT_APP_API_URL}/user/updateanswers/${userId}`, updatedUser)
       .then((response) => {
         console.log("Correction réponses :", response.data);
       })

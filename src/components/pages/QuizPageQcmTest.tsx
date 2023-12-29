@@ -87,7 +87,7 @@ const QuizPageQcmTest = () => {
 
         // Envoyez toutes les réponses avec l'ID de l'utilisateur
         axios
-          .post(`http://localhost:3000/user/saveanswers/${userId}`, {
+          .post(`${process.env.REACT_APP_API_URL}/user/saveanswers/${userId}`, {
             quizResponses: allResponses,
           })
           .then((response) => {

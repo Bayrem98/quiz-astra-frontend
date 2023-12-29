@@ -3,7 +3,7 @@ import Adminuser from "../../@types/Adminuser";
 
 export function getAdminusers(callback: (data: Adminuser[]) => void) {
   axios
-    .get(`http://localhost:3000/adminuser`, {
+    .get(`${process.env.REACT_APP_API_URL}/adminuser`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -18,7 +18,7 @@ export function getAdminusers(callback: (data: Adminuser[]) => void) {
 
 export function getAdminuser(id: string, callback: (data: Adminuser) => void) {
   axios
-    .get(`http://localhost:3000/adminuser/` + id, {
+    .get(`${process.env.REACT_APP_API_URL}/adminuser/` + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -33,7 +33,7 @@ export function getAdminuser(id: string, callback: (data: Adminuser) => void) {
 
 export function addAdminuser(adminuser: Adminuser, callback: () => void) {
   axios
-    .post(`http://localhost:3000/adminuser`, adminuser)
+    .post(`${process.env.REACT_APP_API_URL}/adminuser`, adminuser)
     .then(() => {
       callback();
     })
@@ -44,7 +44,10 @@ export function addAdminuser(adminuser: Adminuser, callback: () => void) {
 
 export function editAdminuser(adminuser: Adminuser, callback: () => void) {
   axios
-    .put(`http://localhost:3000/adminuser/${adminuser._id}`, adminuser)
+    .put(
+      `${process.env.REACT_APP_API_URL}/adminuser/${adminuser._id}`,
+      adminuser
+    )
     .then(() => {
       callback();
     })
@@ -55,7 +58,7 @@ export function editAdminuser(adminuser: Adminuser, callback: () => void) {
 
 export function deleteAdminuser(adminuser: Adminuser, callback: () => void) {
   axios
-    .delete(`http://localhost:3000/adminuser/${adminuser._id}`)
+    .delete(`${process.env.REACT_APP_API_URL}/adminuser/${adminuser._id}`)
     .then(() => {
       callback();
     })

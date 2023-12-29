@@ -44,7 +44,7 @@ function Login() {
     const authEndpoint = isAdmin ? "logina" : "login";
 
     axios
-      .post(`http://localhost:3000/auth/${authEndpoint}`, {
+      .post(`${process.env.REACT_APP_API_URL}/auth/${authEndpoint}`, {
         username,
         password,
       })
