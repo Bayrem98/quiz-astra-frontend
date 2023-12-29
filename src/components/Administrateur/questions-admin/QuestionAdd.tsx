@@ -79,11 +79,18 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
         isOpen={isOpened}
         toggle={() => setIsOpened(!isOpened)}
       >
-        <ModalBody>
-          <p className="addQuestion-modal-title"></p>
+        <ModalBody style={{ backgroundColor: "#6c757d" }}>
+          <p style={{ fontSize: 18, color: "white" }}>Ajouter Question</p>
           <span
             className="addQuestion-modal-iconclose"
             onClick={() => setIsOpened(false)}
+            style={{
+              position: "absolute",
+              right: 10,
+              top: 5,
+              color: "white",
+              cursor: "pointer",
+            }}
           >
             X
           </span>
@@ -178,16 +185,19 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
             </FormGroup>
           </Form>
         </ModalBody>
-        <ModalFooter>
-          <button className="addQuestion-modal-button1" onClick={submit}>
+        <ModalFooter style={{ backgroundColor: "#6c757d" }}>
+          <Button
+            style={{ backgroundColor: "white", color: "black" }}
+            onClick={submit}
+          >
             Confirme
-          </button>{" "}
-          <button
-            className="addQuestion-modal-button2"
+          </Button>{" "}
+          <Button
+            style={{ backgroundColor: "red" }}
             onClick={() => setIsOpened(false)}
           >
             Annuler
-          </button>
+          </Button>
         </ModalFooter>
       </Modal>
     </>

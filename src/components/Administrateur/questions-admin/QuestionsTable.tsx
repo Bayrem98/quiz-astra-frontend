@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
-import { ButtonGroup, Table } from "reactstrap";
+import { ButtonGroup, Input, Table } from "reactstrap";
 import Question from "../../../@types/Question";
 import { getQuestions } from "../../../actions/Questions/action";
 import QuestionAdd from "./QuestionAdd";
@@ -11,6 +11,7 @@ interface Props {}
 
 const QuestionsTable = (props: Props) => {
   const [Questions, setQuestions] = useState<Question[]>([]); // form state for Questions.
+  const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
     getQuestions(null, setQuestions); // aka setQuestions(data)
@@ -29,6 +30,14 @@ const QuestionsTable = (props: Props) => {
           style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
         >
           <h3 style={{ color: "white" }}>Liste des Questions</h3>
+          <div className="">
+            <Input
+              type="text"
+              placeholder="Chercher içi..."
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            />
+          </div>
           <QuestionAdd refresh={() => getQuestions(null, setQuestions)} />
         </div>
         <br />
@@ -46,7 +55,18 @@ const QuestionsTable = (props: Props) => {
             </thead>
             <tbody>
               {Array.isArray(Questions) && Questions.length ? (
-                Questions.map((question) => (
+                Questions.filter(
+                  (question) =>
+                    question.question
+                      .toLowerCase()
+                      .includes(filter.toLowerCase()) ||
+                    question.quizType
+                      .toLowerCase()
+                      .includes(filter.toLowerCase()) ||
+                    question.category
+                      .toLowerCase()
+                      .includes(filter.toLowerCase())
+                ).map((question) => (
                   <tr className="Questionstable-table-tbody" key={question._id}>
                     <td>{question.category}</td>
                     <td>{question.quizType}</td>

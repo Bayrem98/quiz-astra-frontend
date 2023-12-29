@@ -53,14 +53,14 @@ function Navbard() {
         style={{ position: "fixed", top: 0, zIndex: 999, width: "100%" }}
       >
         <NavbarBrand href="/home">Quiz-App</NavbarBrand>
-        <div className="d-flex justify-content" style={{ marginRight: 250 }}>
+        <div className="d-flex justify-content" style={{ marginRight: 300 }}>
           <NavLink
             to={"/accueilquiz"}
             style={{
               textDecoration: "none",
               color: "white",
               fontSize: 18,
-              marginRight: 70,
+              marginRight: 150,
             }}
           >
             Accueil
@@ -71,7 +71,7 @@ function Navbard() {
               textDecoration: "none",
               color: "white",
               fontSize: 18,
-              marginRight: 70,
+              marginRight: 150,
             }}
           >
             Profil
