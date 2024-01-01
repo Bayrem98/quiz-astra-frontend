@@ -77,8 +77,14 @@ const RecapOneUser = () => {
       return;
     }
 
+    const totalNote = user.quizResponses.reduce(
+      (sum, response) => sum + (note[response.question] || 0),
+      0
+    );
+
     const updatedUser = {
       ...user,
+      noteGlobal: totalNote,
       quizResponses: user.quizResponses.map((response) => ({
         ...response,
         correctionQuestion: correction[response.question],
