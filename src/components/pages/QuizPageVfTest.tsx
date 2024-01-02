@@ -36,8 +36,8 @@ const QuizPageVfTest = () => {
       }, {} as { [key: string]: string });
 
       setQuestionsText(questionsTextData);
-      const shuffledQuestions = questionsData.sort(() => Math.random() - 0.5);
-      setDisplayedQuestions(shuffledQuestions.slice(0, 5));
+      const shuffledQuestions = questionsData.sort(() => Math.random() - 0.1);
+      setDisplayedQuestions(shuffledQuestions.slice(0, 10));
     });
   }, [categ, quizTy]);
 
@@ -116,6 +116,10 @@ const QuizPageVfTest = () => {
 
   const navigate = useNavigate();
 
+  const middleIndex = Math.ceil(displayedQuestions.length / 2);
+  const leftQuestions = displayedQuestions.slice(0, middleIndex);
+  const rightQuestions = displayedQuestions.slice(middleIndex);
+
   return (
     <>
       <div
@@ -132,7 +136,7 @@ const QuizPageVfTest = () => {
           onClick={() => navigate(-1)}
           style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />
-        <Card style={{ marginLeft: 180, marginRight: 180, border: 0 }}>
+        <Card style={{ marginLeft: 50, marginRight: 50, border: 0 }}>
           <CardHeader
             style={{
               textAlign: "center",
@@ -144,64 +148,132 @@ const QuizPageVfTest = () => {
             Vrai ou Faux - Quiz
           </CardHeader>
           <CardBody>
-            <h5>Il faut cocher une bonne réponse pour chaque question</h5>
+            <h5 style={{ textAlign: "center" }}>
+              Il faut cocher une bonne réponse pour chaque question
+            </h5>
             <br />
-            {Array.isArray(displayedQuestions) && displayedQuestions.length ? (
-              displayedQuestions.map((question) => (
-                <div className="Questionstable-table-tbody" key={question._id}>
-                  <p>*{question.question}</p>
-                  <h6>Les réponses:</h6>
-                  <label style={{ cursor: "pointer" }}>
-                    <Input
-                      type="radio"
-                      name={`question_${question._id}`}
-                      value={question.incorrect_answer1}
-                      onChange={() =>
-                        handleRadioChange(
-                          question._id,
-                          question.incorrect_answer1
-                        )
-                      }
-                      style={{ marginRight: 10, cursor: "pointer" }}
-                    />
-                    a. {question.incorrect_answer1}
-                  </label>
-                  <br />
-                  {/* Bouton radio pour la réponse correcte */}
-                  <label style={{ cursor: "pointer" }}>
-                    <Input
-                      type="radio"
-                      name={`question_${question._id}`}
-                      value={question.correct_answer}
-                      onChange={() =>
-                        handleRadioChange(question._id, question.correct_answer)
-                      }
-                      style={{ marginRight: 10, cursor: "pointer" }}
-                    />
-                    b. {question.correct_answer}
-                  </label>
-                  <br />
-                  <br />
-                </div>
-              ))
-            ) : (
-              <div>
-                <span
-                  className="text-center"
-                  style={{ position: "relative", left: 400 }}
-                >
-                  <FontAwesomeIcon icon={faBoxOpen} size="8x" />
-                  <br />
-                  Pas des données...
-                </span>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ width: "48%" }}>
+                {Array.isArray(leftQuestions) && leftQuestions.length ? (
+                  leftQuestions.map((question) => (
+                    <div
+                      className="Questionstable-table-tbody"
+                      key={question._id}
+                    >
+                      <p style={{ fontWeight: "bold" }}>*{question.question}</p>
+                      <h6>Les réponses:</h6>
+                      <label style={{ cursor: "pointer" }}>
+                        <Input
+                          type="radio"
+                          name={`question_${question._id}`}
+                          value={question.incorrect_answer1}
+                          onChange={() =>
+                            handleRadioChange(
+                              question._id,
+                              question.incorrect_answer1
+                            )
+                          }
+                          style={{ marginRight: 10, cursor: "pointer" }}
+                        />
+                        a. {question.incorrect_answer1}
+                      </label>
+                      <br />
+                      <label style={{ cursor: "pointer" }}>
+                        <Input
+                          type="radio"
+                          name={`question_${question._id}`}
+                          value={question.correct_answer}
+                          onChange={() =>
+                            handleRadioChange(
+                              question._id,
+                              question.correct_answer
+                            )
+                          }
+                          style={{ marginRight: 10, cursor: "pointer" }}
+                        />
+                        b. {question.correct_answer}
+                      </label>
+                      <br />
+                      <br />
+                    </div>
+                  ))
+                ) : (
+                  <div>
+                    <span
+                      className="text-center"
+                      style={{ position: "relative", left: 400 }}
+                    >
+                      <FontAwesomeIcon icon={faBoxOpen} size="8x" />
+                      <br />
+                      Pas des données...
+                    </span>
+                  </div>
+                )}
               </div>
-            )}
+              <hr
+                style={{
+                  width: 8,
+                  height: 850,
+                  margin: 0,
+                  backgroundColor: "#6c757d",
+                  marginRight: 20,
+                }}
+              />
+              <div style={{ width: "48%" }}>
+                {Array.isArray(rightQuestions) && rightQuestions.length ? (
+                  rightQuestions.map((question) => (
+                    <div
+                      className="Questionstable-table-tbody"
+                      key={question._id}
+                    >
+                      <p style={{ fontWeight: "bold" }}>*{question.question}</p>
+                      <h6>Les réponses:</h6>
+                      <label style={{ cursor: "pointer" }}>
+                        <Input
+                          type="radio"
+                          name={`question_${question._id}`}
+                          value={question.incorrect_answer1}
+                          onChange={() =>
+                            handleRadioChange(
+                              question._id,
+                              question.incorrect_answer1
+                            )
+                          }
+                          style={{ marginRight: 10, cursor: "pointer" }}
+                        />
+                        a. {question.incorrect_answer1}
+                      </label>
+                      <br />
+                      <label style={{ cursor: "pointer" }}>
+                        <Input
+                          type="radio"
+                          name={`question_${question._id}`}
+                          value={question.correct_answer}
+                          onChange={() =>
+                            handleRadioChange(
+                              question._id,
+                              question.correct_answer
+                            )
+                          }
+                          style={{ marginRight: 10, cursor: "pointer" }}
+                        />
+                        b. {question.correct_answer}
+                      </label>
+                      <br />
+                      <br />
+                    </div>
+                  ))
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            </div>
             <div
               className="d-flex justify-content-between"
               style={{ marginBottom: 10 }}
             >
               <p style={{ fontWeight: "bold" }}>
-                Vous avez terminer le quiz Bonne Chance...
+                Vous avez terminé le quiz. Bonne chance...
               </p>
               <Button color="success" onClick={handleSaveAnswers}>
                 Enregistrer Vos Réponses
