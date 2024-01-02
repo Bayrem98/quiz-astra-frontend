@@ -182,9 +182,9 @@ function Login() {
                         }}
                         style={{ width: 300 }}
                       >
-                        <option value="user">Utilisateur</option>
-                        <option value="admin">Administrateur</option>
-                        <option value="supadmin">Super Administrateur</option>
+                        <option value="user">Voyant</option>
+                        <option value="admin">Formateur</option>
+                        <option value="supadmin">Administrateur</option>
                       </Input>
                     </div>
                   </FormGroup>
@@ -248,10 +248,10 @@ function Login() {
                       <span style={{ color: "#6c757d" }}>
                         Valider en tant que{" "}
                         {isAdmin
-                          ? "administrateur"
+                          ? "formateur"
                           : isSupAdmin
-                          ? "super administrateur"
-                          : "utilisateur"}
+                          ? "administrateur"
+                          : "voyant"}
                       </span>
                     </Button>
                   </FormGroup>

@@ -14,10 +14,13 @@ import User from "../../@types/User";
 import { getUser } from "../../actions/Users/action";
 import Adminuser from "../../@types/Adminuser";
 import { getAdminuser } from "../../actions/Adminusers/action";
+import Supadmin from "../../@types/Supadmin";
+import { getSupadmin } from "../../actions/Supadmin/action";
 
 function Navbard() {
   const [userData, setUserData] = useState<User | null>(null);
   const [adminuser, setAdminuser] = useState<Adminuser | null>(null);
+  const [supAdmin, setSupAdmin] = useState<Supadmin | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,6 +33,13 @@ function Navbard() {
   useEffect(() => {
     if (userId) {
       getAdminuser(userId, setAdminuser);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      getSupadmin(userId, setSupAdmin);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -98,12 +108,16 @@ function Navbard() {
                   <DropdownItem href="/questionstable">
                     Ajouter Des Questions
                   </DropdownItem>
-                  <DropdownItem href="/supadmintable">
-                    Ajouter Des Sup-Admin
-                  </DropdownItem>
-                  <DropdownItem href="/adminuserstable">
-                    Ajouter Des Formateurs
-                  </DropdownItem>
+                  {supAdmin && (
+                    <div>
+                      <DropdownItem href="/supadmintable">
+                        Ajouter Des Sup-Admin
+                      </DropdownItem>
+                      <DropdownItem href="/adminuserstable">
+                        Ajouter Des Formateurs
+                      </DropdownItem>
+                    </div>
+                  )}
                   <DropdownItem href="/userstable">
                     Ajouter Des Voyants
                   </DropdownItem>
@@ -141,7 +155,9 @@ function Navbard() {
                   }}
                 >
                   {" "}
-                  {userData?.username || adminuser?.username}
+                  {userData?.username ||
+                    adminuser?.username ||
+                    supAdmin?.username}
                 </span>
               </span>
             </DropdownItem>
