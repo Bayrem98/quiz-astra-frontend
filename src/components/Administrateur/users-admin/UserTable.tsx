@@ -28,7 +28,7 @@ const UsersTable = (props: Props) => {
         className="d-flex justify-content-between"
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
       >
-        <h3 style={{ color: "white" }}>Tableau des Utilisateurs</h3>
+        <h3 style={{ color: "white" }}>Tableau des Voyants</h3>
         <div className="">
           <Input
             type="text"
@@ -44,7 +44,7 @@ const UsersTable = (props: Props) => {
         <Table bordered responsive hover>
           <thead>
             <tr>
-              <th>Nom d'utilisateur</th>
+              <th>Pseudo</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>

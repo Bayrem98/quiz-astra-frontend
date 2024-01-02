@@ -81,12 +81,12 @@ const UserAdd = (props: UserAddPropsType) => {
           }}
           toggle={() => setIsOpened(!isOpened)}
         >
-          <span>Ajouter utilisateur</span>
+          <span>Ajouter Voyants</span>
         </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="username">Nom d'utilisateur</Label>
+              <Label for="username">Pseudo</Label>
               <Input
                 value={username}
                 id="username"

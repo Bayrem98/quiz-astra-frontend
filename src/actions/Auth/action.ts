@@ -21,6 +21,26 @@ export function login(
     });
 }
 
+export function loginsup(
+  username: string,
+  pass: string,
+  callback: (data: any) => void,
+  fallback: () => void
+) {
+  axios
+    .post(`${process.env.REACT_APP_API_URL}/auth/loginsup`, {
+      username: username,
+      password: pass,
+    })
+    .then(({ data }) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      fallback();
+    });
+}
+
 export function logina(
   username: string,
   pass: string,
@@ -48,6 +68,11 @@ export function logout() {
 }
 
 export function logoutAdmin() {
+  Cookies.remove("access_token");
+  window.location.reload();
+}
+
+export function logoutSupadmin() {
   Cookies.remove("access_token");
   window.location.reload();
 }

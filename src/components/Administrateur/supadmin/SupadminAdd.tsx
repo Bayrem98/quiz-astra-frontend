@@ -12,12 +12,12 @@ import {
   ModalFooter,
   ModalHeader,
 } from "reactstrap";
-import { addAdminuser } from "../../../actions/Adminusers/action";
+import { addSupadmin } from "../../../actions/Supadmin/action";
 
-interface AdminuserAddPropsType {
+interface SupadminAddAddPropsType {
   refresh: () => void;
 }
-const AdminuserAdd = (props: AdminuserAddPropsType) => {
+const SupadminAdd = (props: SupadminAddAddPropsType) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   // form states
@@ -34,11 +34,11 @@ const AdminuserAdd = (props: AdminuserAddPropsType) => {
   };
 
   const submit = () => {
-    const newAdminuser = {
+    const newSupadmin = {
       username,
       password,
     };
-    addAdminuser(newAdminuser, () => {
+    addSupadmin(newSupadmin, () => {
       props.refresh();
       setIsOpened(false);
       reset();
@@ -81,12 +81,12 @@ const AdminuserAdd = (props: AdminuserAddPropsType) => {
           }}
           toggle={() => setIsOpened(!isOpened)}
         >
-          <span>Ajouter Formateur</span>
+          <span>Ajouter Sup-admin</span>
         </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="username">Nom de Formateur</Label>
+              <Label for="username">Nom de Sup-admin</Label>
               <Input
                 value={username}
                 id="username"
@@ -150,4 +150,4 @@ const AdminuserAdd = (props: AdminuserAddPropsType) => {
   );
 };
 
-export default AdminuserAdd;
+export default SupadminAdd;

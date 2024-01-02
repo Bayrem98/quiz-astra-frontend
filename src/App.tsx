@@ -16,6 +16,7 @@ import QuizPageVfTest from "./components/pages/QuizPageVfTest";
 import QuizPageQrTest from "./components/pages/QuizPageQrTest";
 import RecapAllUsers from "./components/Administrateur/recap-users-admin/RecapAllUsers";
 import RecapOneUser from "./components/Administrateur/recap-users-admin/RecapOneUser";
+import SupadminsTable from "./components/Administrateur/supadmin/SupadminTable";
 
 enum WebsiteRoute {
   LOGIN = "/",
@@ -23,6 +24,7 @@ enum WebsiteRoute {
   HOME_QUIZ = "/accueilquiz",
   QUESTIONS_TABLE = "/questionstable",
   ADMINUSERS_TABLE = "/adminuserstable",
+  SUP_ADMIN_TABLE = "/supadmintable",
   USERS_TABLE = "/userstable",
   QUIZ_PAGE_CATEG1 = "/accueilquiz/quizpageqcmtest/:categ/:quizTy",
   QUIZ_PAGE_CATEG2 = "/accueilquiz/quizpagevftest/:categ/:quizTy",
@@ -67,6 +69,10 @@ function App() {
       {Cookies.get("access_token") && localStorage.getItem("access_token") && (
         <>
           <Routes>
+            <Route
+              path={WebsiteRoute.SUP_ADMIN_TABLE}
+              element={<SupadminsTable />}
+            />
             <Route
               path={WebsiteRoute.QUESTIONS_TABLE}
               element={<QuestionsTable />}

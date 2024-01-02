@@ -18,6 +18,7 @@ function Login() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(true);
+  const [isSupAdmin, setIsSupAdmin] = useState(false);
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -36,12 +37,18 @@ function Login() {
 
   const toggleRole = () => {
     setIsAdmin((prevIsAdmin) => !prevIsAdmin);
+    setIsSupAdmin(false); // Reset supadmin when toggling role
   };
 
-  const login = (event: any, isAdmin: boolean) => {
+  const toggleSupAdmin = () => {
+    setIsSupAdmin((prevIsSupAdmin) => !prevIsSupAdmin);
+    setIsAdmin(false); // Reset admin when toggling role
+  };
+
+  const login = (event: any, isAdmin: boolean, isSupAdmin: boolean) => {
     event.preventDefault();
 
-    const authEndpoint = isAdmin ? "logina" : "login";
+    const authEndpoint = isAdmin ? "logina" : isSupAdmin ? "loginsup" : "login";
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/${authEndpoint}`, {
@@ -53,8 +60,8 @@ function Login() {
         localStorage.setItem("access_token", data.user.username);
         localStorage.setItem("user_id", data.user._id);
 
-        // Pour les administrateurs, utilisez Cookies
-        if (isAdmin) {
+        // Pour les administrateurs et supadmins, utilisez Cookies
+        if (isAdmin || isSupAdmin) {
           Cookies.set(
             "access_token",
             token,
@@ -142,7 +149,7 @@ function Login() {
                   Connectez-vous
                 </h2>
                 <br />
-                <Form onSubmit={(event) => login(event, isAdmin)}>
+                <Form onSubmit={(event) => login(event, isAdmin, isSupAdmin)}>
                   <FormGroup style={{ paddingLeft: 95 }}>
                     <Label style={{ color: "white" }}>
                       <FontAwesomeIcon
@@ -159,12 +166,25 @@ function Login() {
                     <div className="d-flex justify-content-between">
                       <Input
                         type="select"
-                        value={isAdmin ? "admin" : "user"}
-                        onChange={toggleRole}
+                        value={
+                          isAdmin ? "admin" : isSupAdmin ? "supadmin" : "user"
+                        }
+                        onChange={(e) => {
+                          const selectedRole = e.target.value;
+                          if (selectedRole === "admin") {
+                            toggleRole();
+                          } else if (selectedRole === "supadmin") {
+                            toggleSupAdmin();
+                          } else {
+                            // Default to user role
+                            toggleRole();
+                          }
+                        }}
                         style={{ width: 300 }}
                       >
                         <option value="user">Utilisateur</option>
                         <option value="admin">Administrateur</option>
+                        <option value="supadmin">Super Administrateur</option>
                       </Input>
                     </div>
                   </FormGroup>
@@ -227,7 +247,11 @@ function Login() {
                     >
                       <span style={{ color: "#6c757d" }}>
                         Valider en tant que{" "}
-                        {isAdmin ? "administrateur" : "utilisateur"}
+                        {isAdmin
+                          ? "administrateur"
+                          : isSupAdmin
+                          ? "super administrateur"
+                          : "utilisateur"}
                       </span>
                     </Button>
                   </FormGroup>

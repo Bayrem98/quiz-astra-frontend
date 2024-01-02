@@ -2,18 +2,19 @@ import { useEffect, useState } from "react";
 import { ButtonGroup, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
-import Adminuser from "../../../@types/Adminuser";
 import { getAdminusers } from "../../../actions/Adminusers/action";
-import AdminuserAdd from "./AdminuserAdd";
-import AdminuserDelete from "./AdminuserDelete";
+import Supadmin from "../../../@types/Supadmin";
+import { getSupadmins } from "../../../actions/Supadmin/action";
+import SupadminAdd from "./SupadminAdd";
+import SupadminDelete from "./SupadminDelete";
 
 interface Props {}
 
-const AdminusersTable = (props: Props) => {
-  const [adminusers, setAdminusers] = useState<Adminuser[]>([]);
+const SupadminsTable = (props: Props) => {
+  const [supadmins, setSupadmins] = useState<Supadmin[]>([]);
 
   useEffect(() => {
-    getAdminusers(setAdminusers);
+    getSupadmins(setSupadmins);
   }, []);
 
   return (
@@ -28,28 +29,28 @@ const AdminusersTable = (props: Props) => {
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
       >
         <div className="d-flex justify-content-between">
-          <h3 style={{ color: "white" }}>Tableau des Formateurs</h3>
-          <AdminuserAdd refresh={() => getAdminusers(setAdminusers)} />
+          <h3 style={{ color: "white" }}>Tableau des Sup-Admins</h3>
+          <SupadminAdd refresh={() => getSupadmins(setSupadmins)} />
         </div>
         <br />
         <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 590 }}>
           <Table bordered responsive hover>
             <thead>
               <tr>
-                <th>Nom De Formateur</th>
+                <th>Nom de Sup-admin</th>
                 <th style={{ textAlign: "center" }}>Action</th>
               </tr>
             </thead>
             <tbody>
-              {adminusers.length ? (
-                adminusers.map((adminuser) => (
-                  <tr key={adminuser._id}>
-                    <td>{adminuser.username}</td>
+              {supadmins.length ? (
+                supadmins.map((supadmin) => (
+                  <tr key={supadmin._id}>
+                    <td>{supadmin.username}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
-                        <AdminuserDelete
-                          adminuser={adminuser}
-                          refresh={() => getAdminusers(setAdminusers)}
+                        <SupadminDelete
+                          supadmin={supadmin}
+                          refresh={() => getSupadmins(setSupadmins)}
                         />
                       </ButtonGroup>
                     </td>
@@ -72,4 +73,4 @@ const AdminusersTable = (props: Props) => {
   );
 };
 
-export default AdminusersTable;
+export default SupadminsTable;

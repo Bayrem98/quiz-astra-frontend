@@ -98,14 +98,17 @@ function Navbard() {
                   <DropdownItem href="/questionstable">
                     Ajouter Des Questions
                   </DropdownItem>
-                  <DropdownItem href="/userstable">
-                    Ajouter Des Utilisateurs
+                  <DropdownItem href="/supadmintable">
+                    Ajouter Des Sup-Admin
                   </DropdownItem>
                   <DropdownItem href="/adminuserstable">
-                    Ajouter Des Admin-Utilisateurs
+                    Ajouter Des Formateurs
+                  </DropdownItem>
+                  <DropdownItem href="/userstable">
+                    Ajouter Des Voyants
                   </DropdownItem>
                   <DropdownItem href="/recapallusers">
-                    Recap pour tous les utilisateurs
+                    Recap pour tous les Voyants
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
