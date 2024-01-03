@@ -93,14 +93,27 @@ const RecapOneUser = () => {
     };
     console.log(updatedUser);
     axios
-      .put(`${process.env.REACT_APP_API_URL}/user/updateanswers/${userId}`, updatedUser)
+      .put(
+        `${process.env.REACT_APP_API_URL}/user/updateanswers/${userId}`,
+        updatedUser
+      )
       .then((response) => {
         console.log("Correction réponses :", response.data);
       })
       .catch((error) => {
         console.log("Erreur Correction :", error);
       });
+      scheduleRefresh();
+  };
+
+  const refresh = () => {
     window.location.reload();
+  };
+
+  const scheduleRefresh = () => {
+    setTimeout(() => {
+      refresh();
+    }, 10000); // 60000 millisecondes équivalent à 1 minute
   };
 
   const onCorrectionChange = (
