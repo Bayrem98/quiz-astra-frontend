@@ -27,17 +27,33 @@ const QuizPageVfTest = () => {
         return;
       }
       setQuestions(questionsData);
-      // Stockez les textes des questions dans l'état
       const questionsTextData = questionsData.reduce((acc, q) => {
         if (q && q._id) {
           acc[q._id] = q.question;
         }
         return acc;
       }, {} as { [key: string]: string });
-
       setQuestionsText(questionsTextData);
-      const shuffledQuestions = questionsData.sort(() => Math.random() - 0.1);
-      setDisplayedQuestions(shuffledQuestions.slice(0, 10));
+      // Créez un tableau d'indices de questions
+      const questionIndices = Array.from(
+        { length: questionsData.length },
+        (_, index) => index
+      );
+      // Mélangez le tableau d'indices
+      for (let i = questionIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questionIndices[i], questionIndices[j]] = [
+          questionIndices[j],
+          questionIndices[i],
+        ];
+      }
+      // Sélectionnez les 10 premiers indices mélangés
+      const selectedIndices = questionIndices.slice(0, 10);
+      // Créez un tableau de questions basé sur les indices sélectionnés
+      const shuffledQuestions = selectedIndices.map(
+        (index) => questionsData[index]
+      );
+      setDisplayedQuestions(shuffledQuestions);
     });
   }, [categ, quizTy]);
 
