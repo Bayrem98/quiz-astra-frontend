@@ -83,7 +83,7 @@ const RecapAllUsers = (props: Props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={2} className="text-center">
+                  <td colSpan={3} className="text-center">
                     <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                     <br />
                     Pas des données...

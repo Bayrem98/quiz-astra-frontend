@@ -12,6 +12,7 @@ const RecapOneUser = () => {
   const [user, setUser] = useState<User>();
   const [correction, setCorrection] = useState<{ [key: string]: string }>({});
   const [note, setNote] = useState<{ [key: string]: number }>({});
+  const [correcteur, setCorrecteur] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,6 +57,13 @@ const RecapOneUser = () => {
           noteGlobal: totalNote,
         };
         setUser(updatedUser);
+
+        const correcteurMap: { [key: string]: string } = {};
+        response.data.quizResponses.forEach((response: QuizResponse) => {
+          const storedCorrecteur = localStorage.getItem("access_token");
+          correcteurMap[response.question] = storedCorrecteur || "";
+        });
+        setCorrecteur(correcteurMap);
       } catch (error) {
         console.error(
           "Erreur lors de la récupération de l'utilisateur :",
@@ -103,7 +111,7 @@ const RecapOneUser = () => {
       .catch((error) => {
         console.log("Erreur Correction :", error);
       });
-      scheduleRefresh();
+    scheduleRefresh();
   };
 
   const refresh = () => {
@@ -113,7 +121,7 @@ const RecapOneUser = () => {
   const scheduleRefresh = () => {
     setTimeout(() => {
       refresh();
-    }, 10000); // 60000 millisecondes équivalent à 1 minute
+    }, 2000); // 60000 millisecondes équivalent à 1 minute
   };
 
   const onCorrectionChange = (
@@ -183,7 +191,7 @@ const RecapOneUser = () => {
         <br />
         <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 570 }}>
           {user && (
-            <Table bordered hover responsive>
+            <Table hover responsive>
               <thead>
                 <tr>
                   <th>QuizType</th>
@@ -192,6 +200,7 @@ const RecapOneUser = () => {
                   <th>Réponse</th>
                   <th>Correction</th>
                   <th>Note</th>
+                  <th>Correcteur</th>
                 </tr>
               </thead>
               <tbody>
@@ -220,6 +229,9 @@ const RecapOneUser = () => {
                           onChange={(e) => onNoteChange(e, response.question)}
                         />
                       </td>
+                      {responseIndex === 0 ? (
+                        <td colSpan={1}>{correcteur[response.question]}</td>
+                      ) : null}
                     </tr>
                   ))
                 ) : (
