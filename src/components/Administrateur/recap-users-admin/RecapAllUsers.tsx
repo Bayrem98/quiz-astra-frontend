@@ -49,6 +49,7 @@ const RecapAllUsers = (props: Props) => {
             <thead>
               <tr>
                 <th>Nom d'utilisateur</th>
+                <th>Note-global</th>
                 <th style={{ textAlign: "center" }}>Action</th>
               </tr>
             </thead>
@@ -61,6 +62,9 @@ const RecapAllUsers = (props: Props) => {
                   .map((user) => (
                     <tr key={user._id}>
                       <td>{user.username}</td>
+                      <td style={{ fontWeight: "bold" }}>
+                        {user.noteGlobal}/{user.quizResponses?.length}
+                      </td>
                       <td style={{ textAlign: "center" }}>
                         <ButtonGroup>
                           <Link to={`/recaponeuser/${user._id}`}>
