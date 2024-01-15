@@ -26,7 +26,11 @@ const RecapOneUser = () => {
         // Initialiser correction et note avec les valeurs stockées en local storage
         const storedCorrection = localStorage.getItem(`correction-${userId}`);
         const storedNote = localStorage.getItem(`note-${userId}`);
+        const storedCorrecteur = localStorage.getItem(`correcteur-${userId}`);
 
+        const initialCorrecteur: { [key: string]: string } = storedCorrecteur
+          ? JSON.parse(storedCorrecteur)
+          : {};
         const initialCorrection: { [key: string]: string } = storedCorrection
           ? JSON.parse(storedCorrection)
           : {};
@@ -45,6 +49,8 @@ const RecapOneUser = () => {
             initialNote[response.question] =
               response.note || initialNote[response.question] || 0;
             totalNote += response.note || 0; // Add each note to the totalNote
+            initialCorrecteur[response.question] =
+              response.correcteur || initialCorrecteur[response.question] || "";
           });
         }
 
@@ -57,13 +63,6 @@ const RecapOneUser = () => {
           noteGlobal: totalNote,
         };
         setUser(updatedUser);
-
-        const correcteurMap: { [key: string]: string } = {};
-        response.data.quizResponses.forEach((response: QuizResponse) => {
-          const storedCorrecteur = localStorage.getItem("access_token");
-          correcteurMap[response.question] = storedCorrecteur || "";
-        });
-        setCorrecteur(correcteurMap);
       } catch (error) {
         console.error(
           "Erreur lors de la récupération de l'utilisateur :",
@@ -97,6 +96,7 @@ const RecapOneUser = () => {
         ...response,
         correctionQuestion: correction[response.question],
         note: note[response.question],
+        correcteur: correcteur[response.question],
       })),
     };
     console.log(updatedUser);
@@ -122,6 +122,21 @@ const RecapOneUser = () => {
     setTimeout(() => {
       refresh();
     }, 2000); // 60000 millisecondes équivalent à 1 minute
+  };
+
+  const onCorrecteur = (
+    event: ChangeEvent<HTMLInputElement>,
+    question: string
+  ) => {
+    const updatedCorrecteur = {
+      ...correcteur,
+      [question]: event.target.value,
+    };
+    setCorrecteur(updatedCorrecteur);
+    localStorage.setItem(
+      `correcteur-${userId}`,
+      JSON.stringify(updatedCorrecteur)
+    );
   };
 
   const onCorrectionChange = (
@@ -200,7 +215,7 @@ const RecapOneUser = () => {
                   <th>Réponse</th>
                   <th>Correction</th>
                   <th>Note</th>
-                  <th>Correcteur</th>
+                  <th style={{ textAlign: "center" }}>Correcteur</th>
                 </tr>
               </thead>
               <tbody>
@@ -230,7 +245,13 @@ const RecapOneUser = () => {
                         />
                       </td>
                       {responseIndex === 0 ? (
-                        <td colSpan={1}>{correcteur[response.question]}</td>
+                        <td colSpan={1}>
+                          <Input
+                            type="text"
+                            value={correcteur[response.question] || ""}
+                            onChange={(e) => onCorrecteur(e, response.question)}
+                          />
+                        </td>
                       ) : null}
                     </tr>
                   ))
