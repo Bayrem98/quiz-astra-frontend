@@ -17,7 +17,8 @@ const AccueilQuiz = () => {
           backgroundSize: "cover",
         }}
       >
-        <h2 style={{ textAlign: "center", paddingTop: 100, color: "white" }}>
+        {" "}
+        <h2 className="animated-gradient-text">
           Pour commencer le quiz choissir un théme
         </h2>
         <div className="d-flex justify-content-center">
@@ -40,7 +41,7 @@ const AccueilQuiz = () => {
                 des planètes et défiez-vous avec des questions stimulantes sur
                 l'astrologie.
               </CardText>
-              <ButtonGroup style={{paddingTop: 16}}>
+              <ButtonGroup style={{ paddingTop: 16 }}>
                 <Link to={"quizpageqcmtest/astrologie/qcm"}>
                   <Button
                     style={{
@@ -95,7 +96,7 @@ const AccueilQuiz = () => {
               <CardTitle tag="h5" style={{ textAlign: "center" }}>
                 Numérologie
               </CardTitle>
-             <CardText style={{ fontSize: 13, textAlign: "justify" }}>
+              <CardText style={{ fontSize: 13, textAlign: "justify" }}>
                 Découvrez les secrets cachés derrière les nombres avec notre
                 quiz de numérologie. Apprenez comment les chiffres peuvent
                 révéler des aspects fascinants de votre personnalité et de votre
@@ -165,7 +166,7 @@ const AccueilQuiz = () => {
               <CardTitle tag="h5" style={{ textAlign: "center" }}>
                 Tarologie
               </CardTitle>
-             <CardText style={{ fontSize: 13, textAlign: "justify" }}>
+              <CardText style={{ fontSize: 13, textAlign: "justify" }}>
                 Plongez dans l'univers mystique de la tarologie avec notre quiz
                 dédié. Explorez les arcanes majeurs et mineurs, apprenez à
                 interpréter les cartes et découvrez les significations
@@ -173,7 +174,7 @@ const AccueilQuiz = () => {
                 l'épreuve votre connaissance des jeux de tarot et défiez-vous
                 avec des questions intrigantes.
               </CardText>
-              <ButtonGroup style={{paddingTop: 19}}>
+              <ButtonGroup style={{ paddingTop: 19 }}>
                 <Link to={"quizpageqcmtest/tarologie/qcm"}>
                   <Button
                     style={{
@@ -229,7 +230,7 @@ const AccueilQuiz = () => {
               <CardTitle tag="h5" style={{ textAlign: "center" }}>
                 Culture Général
               </CardTitle>
-             <CardText style={{ fontSize: 13, textAlign: "justify" }}>
+              <CardText style={{ fontSize: 13, textAlign: "justify" }}>
                 Élargissez vos horizons avec notre quiz de culture générale.
                 Explorez un éventail de sujets allant de la géographie à
                 l'histoire, des arts à la science. Testez vos connaissances sur
