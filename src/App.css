@@ -58,6 +58,12 @@
     animation: gradient 6s linear infinite;
 }
 
+.animated-gradient-button-quiz {
+    background: linear-gradient(50deg,#f5b73c 0, #e7bc38 6.25%, #d9c237 12.5%, #c9c63a 18.75%, #b9cb40 25%, #a8cf48 31.25%, #96d253 37.5%, #83d55f 43.75%, #6cd86c 50%, #50da7a 56.25%, #22dc8a 62.5%, #00de99 68.75%, #00dfaa 75%, #00dfba 81.25%, #00e0cb 87.5%, #00e0db 93.75%, #00e0eb 100%);
+    background-size: 400% 400%;
+    animation: gradient 2s linear infinite;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;

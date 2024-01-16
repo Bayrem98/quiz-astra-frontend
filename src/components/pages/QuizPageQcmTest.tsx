@@ -147,17 +147,21 @@ const QuizPageQcmTest = () => {
           <CardHeader
             style={{
               textAlign: "center",
-              backgroundColor: "#6c757d",
               color: "white",
               fontSize: 20,
+              background:
+                "linear-gradient(50deg,#00889b 0, #0088af 3.85%, #0088c2 7.69%, #0087d3 11.54%, #0086e3 15.38%, #0085f0 19.23%, #0083fa 23.08%, #0080ff 26.92%, #007cff 30.77%, #0076ff 34.62%, #0070ff 38.46%, #0068ff 42.31%, #005efc 46.15%, #5353f2 50%, #7f45e5 53.85%, #9d33d7 57.69%, #b418c6 61.54%, #c600b4 65.38%, #d400a0 69.23%, #de008d 73.08%, #e50078 76.92%, #e90064 80.77%, #ea0051 84.62%, #e8003d 88.46%, #e4002a 92.31%, #dd0013 96.15%, #d41100 100%)",
             }}
           >
             QCM - Quiz
           </CardHeader>
           <CardBody>
-            <h5 style={{ textAlign: "center" }}>
+            <p
+              className="animated-gradient-text2"
+              style={{ textAlign: "center", fontSize: 20 }}
+            >
               Il faut cocher une bonne réponse pour chaque question
-            </h5>
+            </p>
             <br />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div style={{ width: "48%" }}>
@@ -311,10 +315,17 @@ const QuizPageQcmTest = () => {
               className="d-flex justify-content-between"
               style={{ marginBottom: 10 }}
             >
-              <p style={{ fontWeight: "bold" }}>
+              <p
+                className="animated-gradient-text3"
+                style={{ fontWeight: "bold", fontSize: 18 }}
+              >
                 Vous avez terminé le quiz. Bonne chance...
               </p>
-              <Button color="success" onClick={handleSaveAnswers}>
+              <Button
+                className="animated-gradient-button-quiz"
+                style={{border: 0}}
+                onClick={handleSaveAnswers}
+              >
                 Enregistrer Vos Réponses
               </Button>
             </div>
