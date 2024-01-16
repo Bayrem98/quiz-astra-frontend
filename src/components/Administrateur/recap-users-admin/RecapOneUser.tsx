@@ -201,6 +201,7 @@ const RecapOneUser = () => {
           </span>
           <Button
             className="animated-gradient-button-quiz"
+            style={{borderRadius: 50}}
             onClick={handelCorrectionResponses}
           >
             <FontAwesomeIcon icon={faSave} color="white" beatFade size="2xl" />

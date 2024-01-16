@@ -128,9 +128,8 @@ function Login() {
               }}
             >
               <div
-                className="card"
+                className="card animated-gradient-login"
                 style={{
-                  backgroundColor: "#6c757d",
                   width: 500,
                   borderRadius: 20,
                 }}

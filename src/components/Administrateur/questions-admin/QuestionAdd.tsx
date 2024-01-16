@@ -68,12 +68,8 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
 
   return (
     <>
-     <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
-        <img
-          src="/image/small-icons/bouton-ajouter.png"
-          alt="."
-          width={40}
-        />
+      <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
+        <img src="/image/small-icons/bouton-ajouter.png" alt="." width={40} />
       </span>
       <Modal
         centered
@@ -81,8 +77,13 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
         isOpen={isOpened}
         toggle={() => setIsOpened(!isOpened)}
       >
-        <ModalBody style={{ backgroundColor: "#6c757d" }}>
-          <p style={{ fontSize: 18, color: "white" }}>Ajouter Question</p>
+        <ModalBody
+          style={{
+            background:
+              "linear-gradient(50deg,#c1c1f5 0, #cabef2 3.33%, #d3bcee 6.67%, #dbbae9 10%, #e2b8e4 13.33%, #e9b6de 16.67%, #eeb5d7 20%, #f3b3d0 23.33%, #f6b3c9 26.67%, #f9b2c2 30%, #fab3bb 33.33%, #fab3b4 36.67%, #fab4ae 40%, #f8b5a7 43.33%, #f5b7a2 46.67%, #f2b99d 50%, #eebb99 53.33%, #e9bd96 56.67%, #e3c093 60%, #ddc292 63.33%, #d6c491 66.67%, #cfc792 70%, #c7c994 73.33%, #c0cb97 76.67%, #b8cd9a 80%, #b0ce9f 83.33%, #a8d0a4 86.67%, #a0d1aa 90%, #98d2b0 93.33%, #91d3b7 96.67%, #8ad4be 100%)",
+          }}
+        >
+          <p style={{ fontSize: 20, color: "black" }}>Ajouter Question</p>
           <span
             className="addQuestion-modal-iconclose"
             onClick={() => setIsOpened(false)}
@@ -90,7 +91,7 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
               position: "absolute",
               right: 10,
               top: 5,
-              color: "white",
+              color: "black",
               cursor: "pointer",
             }}
           >
@@ -187,7 +188,12 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
             </FormGroup>
           </Form>
         </ModalBody>
-        <ModalFooter style={{ backgroundColor: "#6c757d" }}>
+        <ModalFooter
+          style={{
+            background:
+              "linear-gradient(50deg,#c1c1f5 0, #cabef2 3.33%, #d3bcee 6.67%, #dbbae9 10%, #e2b8e4 13.33%, #e9b6de 16.67%, #eeb5d7 20%, #f3b3d0 23.33%, #f6b3c9 26.67%, #f9b2c2 30%, #fab3bb 33.33%, #fab3b4 36.67%, #fab4ae 40%, #f8b5a7 43.33%, #f5b7a2 46.67%, #f2b99d 50%, #eebb99 53.33%, #e9bd96 56.67%, #e3c093 60%, #ddc292 63.33%, #d6c491 66.67%, #cfc792 70%, #c7c994 73.33%, #c0cb97 76.67%, #b8cd9a 80%, #b0ce9f 83.33%, #a8d0a4 86.67%, #a0d1aa 90%, #98d2b0 93.33%, #91d3b7 96.67%, #8ad4be 100%)",
+          }}
+        >
           <Button
             style={{ backgroundColor: "white", color: "black" }}
             onClick={submit}
