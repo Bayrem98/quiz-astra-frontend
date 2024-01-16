@@ -58,11 +58,19 @@ function Navbard() {
   return (
     <>
       <Navbar
-        color="secondary"
         dark
-        style={{ position: "fixed", top: 0, zIndex: 999, width: "100%" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          zIndex: 999,
+          width: "100%",
+          background:
+            "linear-gradient(50deg,#6e383a 0, #6e3935 6.25%, #6c3a31 12.5%, #6a3c2c 18.75%, #683e29 25%, #653f25 31.25%, #614123 37.5%, #5d4320 43.75%, #59451f 50%, #54471e 56.25%, #50481e 62.5%, #4b4a1f 68.75%, #454b21 75%, #404d23 81.25%, #3a4e26 87.5%, #344f2a 93.75%, #2d502e 100%)",
+        }}
       >
-        <NavbarBrand href="/home">Quiz-App</NavbarBrand>
+        <NavbarBrand href="/home">
+          <img src="/image/pngwing.com.png" alt="." width={30} />
+          Quiz-App</NavbarBrand>
         <div className="d-flex justify-content" style={{ marginRight: 300 }}>
           <NavLink
             to={"/accueilquiz"}
@@ -73,6 +81,7 @@ function Navbard() {
               marginRight: 150,
             }}
           >
+            <img src="/image/small-icons/accueil.png" alt="." width={35} />
             Accueil
           </NavLink>
 
@@ -102,7 +111,12 @@ function Navbard() {
                     fontSize: 18,
                   }}
                 >
-                  Paramétre-Admin
+                  <img
+                    src="/image/small-icons/parametres.png"
+                    alt="."
+                    width={35}
+                  />
+                  Paramétres
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem href="/questionstable">
@@ -142,16 +156,24 @@ function Navbard() {
               marginRight: 10,
             }}
           >
-            <img src="/image/avatar-profil-user.jpg" alt="." width={25} />
+            <img
+              src="/image/small-icons/rapport-de-donnees.png"
+              alt="."
+              width={38}
+            />
           </DropdownToggle>
           <DropdownMenu end>
             <DropdownItem>
-              <span style={{ fontSize: 13, color: "black" }}>
-                Profil:
+              <span>
+                <img
+                  src="/image/small-icons/utilisateur.png"
+                  alt="."
+                  width={30}
+                />
                 <span
+                  className="animated-gradient-text2"
                   style={{
-                    color: "red",
-                    fontSize: 14,
+                    fontSize: 15,
                   }}
                 >
                   {" "}
@@ -170,6 +192,13 @@ function Navbard() {
                 }}
                 onClick={logout}
               >
+                <span>
+                  <img
+                    src="/image/small-icons/se-deconnecter.png"
+                    alt="."
+                    width={33}
+                  />
+                </span>
                 Déconnexion
               </NavLink>
             </DropdownItem>

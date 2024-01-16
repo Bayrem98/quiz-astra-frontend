@@ -146,9 +146,9 @@ const QuizPageVfTest = () => {
         }}
       >
         <img
-          src="/image/pngwing.com.png"
-          alt="."
-          width={40}
+           src="/image/small-icons/fleche-gauche.png"
+           alt="."
+           width={38}
           onClick={() => navigate(-1)}
           style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />
@@ -221,7 +221,12 @@ const QuizPageVfTest = () => {
                   <div>
                     <span
                       className="text-center"
-                      style={{ position: "relative", left: 400 }}
+                      style={{
+                        position: "relative",
+                        left: 475,
+                        top: 100,
+                        zIndex: 1,
+                      }}
                     >
                       <FontAwesomeIcon icon={faBoxOpen} size="8x" />
                       <br />

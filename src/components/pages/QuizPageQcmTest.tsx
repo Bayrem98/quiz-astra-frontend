@@ -137,9 +137,9 @@ const QuizPageQcmTest = () => {
         }}
       >
         <img
-          src="/image/pngwing.com.png"
+          src="/image/small-icons/fleche-gauche.png"
           alt="."
-          width={40}
+          width={38}
           onClick={() => navigate(-1)}
           style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />
@@ -228,7 +228,12 @@ const QuizPageQcmTest = () => {
                   <div>
                     <span
                       className="text-center"
-                      style={{ position: "relative", left: 400 }}
+                      style={{
+                        position: "relative",
+                        left: 460,
+                        top: 100,
+                        zIndex: 1,
+                      }}
                     >
                       <FontAwesomeIcon icon={faBoxOpen} size="8x" />
                       <br />
@@ -323,7 +328,7 @@ const QuizPageQcmTest = () => {
               </p>
               <Button
                 className="animated-gradient-button-quiz"
-                style={{border: 0}}
+                style={{ border: 0 }}
                 onClick={handleSaveAnswers}
               >
                 Enregistrer Vos Réponses

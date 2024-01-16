@@ -178,9 +178,9 @@ const RecapOneUser = () => {
         }}
       >
         <img
-          src="/image/pngwing.com.png"
+          src="/image/small-icons/fleche-gauche.png"
           alt="."
-          width={40}
+          width={38}
           onClick={() => navigate(-1)}
           style={{ cursor: "pointer", marginLeft: 10, marginTop: 70 }}
         />
@@ -199,7 +199,10 @@ const RecapOneUser = () => {
             {user.quizResponses && user.quizResponses.length}-(Nombre des
             questions)
           </span>
-          <Button onClick={handelCorrectionResponses}>
+          <Button
+            className="animated-gradient-button-quiz"
+            onClick={handelCorrectionResponses}
+          >
             <FontAwesomeIcon icon={faSave} color="white" beatFade size="2xl" />
           </Button>
         </div>
