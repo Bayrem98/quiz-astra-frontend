@@ -1,13 +1,61 @@
 
 .animated-gradient-text {
-    margin-top: 56px;
-    text-align: center;
-    background: linear-gradient(45deg, #bb0bd6, #e21e90, red, yellow, blue);
+    background: linear-gradient(45deg, #bb0bd6, #e21e90, red, orange);
     background-size: 400% 400%;
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    animation: gradient 3s linear infinite;
+    animation: gradient 4s linear infinite;
+    font-size: 28px;
+}
+
+.animated-gradient-text1 {
+    background: linear-gradient(45deg,#ad5de7 0, #c252d9 5%, #d346c9 10%, #e13ab8 15%, #eb2ea7 20%, #f32395 25%, #f81d83 30%, #fa1e71 35%, #fa265f 40%, #f7304d 45%, #f23c3c 50%, #eb472a 55%, #e35215 60%, #d95d00 65%, #cd6600 70%, #c06f00 75%, #b37600 80%, #a47d00 85%, #948300 90%, #838900 95%, #718d00 100%);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 4s linear infinite;
+    font-size: 28px;
+}
+
+.animated-gradient-text2 {
+    background: linear-gradient(45deg, #ff57d2 0, #ff4edb 12.5%, #f046e3 25%, #d63feb 37.5%, #b53cf2 50%, #8c3df9 62.5%, #4f40ff 75%, #0046ff 87.5%, #004bff 100%);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 4s linear infinite;
+    font-size: 28px;
+}
+
+.animated-gradient-text3 {
+    background: linear-gradient(45deg,#fff56b 0, #fff866 6.25%, #fdfa63 12.5%, #e7fb61 18.75%, #d0fb62 25%, #b5fa65 31.25%, #97f86a 37.5%, #73f670 43.75%, #3cf278 50%, #00ee82 56.25%, #00ea8f 62.5%, #00e69d 68.75%, #00e2ad 75%, #00dfbe 81.25%, #00dbd1 87.5%, #00d8e3 93.75%, #00d6f6);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 4s linear infinite;
+    font-size: 28px;
+}
+
+.animated-gradient-text-home {
+    background: linear-gradient(50deg, #00889b 0, #0088af 3.85%, #0088c2 7.69%, #0087d3 11.54%, #0086e3 15.38%, #0085f0 19.23%, #0083fa 23.08%, #0080ff 26.92%, #007cff 30.77%, #0076ff 34.62%, #0070ff 38.46%, #0068ff 42.31%, #005efc 46.15%, #5353f2 50%, #7f45e5 53.85%, #9d33d7 57.69%, #b418c6 61.54%, #c600b4 65.38%, #d400a0 69.23%, #de008d 73.08%, #e50078 76.92%, #e90064 80.77%, #ea0051 84.62%, #e8003d 88.46%, #e4002a 92.31%, #dd0013 96.15%, #d41100 100%);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 6s linear infinite;
+    font-size: 28px;
+}
+
+.animated-gradient-button {
+    background: linear-gradient(50deg,#00889b 0, #0088af 3.85%, #0088c2 7.69%, #0087d3 11.54%, #0086e3 15.38%, #0085f0 19.23%, #0083fa 23.08%, #0080ff 26.92%, #007cff 30.77%, #0076ff 34.62%, #0070ff 38.46%, #0068ff 42.31%, #005efc 46.15%, #5353f2 50%, #7f45e5 53.85%, #9d33d7 57.69%, #b418c6 61.54%, #c600b4 65.38%, #d400a0 69.23%, #de008d 73.08%, #e50078 76.92%, #e90064 80.77%, #ea0051 84.62%, #e8003d 88.46%, #e4002a 92.31%, #dd0013 96.15%, #d41100 100%);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 6s linear infinite;
 }
 
 @keyframes gradient {
