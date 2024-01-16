@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Adminuser from "../../../@types/Adminuser";
 import { deleteAdminuser } from "../../../actions/Adminusers/action";
@@ -22,13 +20,9 @@ const AdminuserDelete = ({ adminuser, refresh }: AdminuserDeletePropsType) => {
 
   return (
     <>
-      <Button
-        className="btn3-delete"
-        color="danger"
-        onClick={() => setIsOpened(true)}
-      >
-        <FontAwesomeIcon icon={faTrash} />
-      </Button>
+      <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
+        <img src="/image/small-icons/supprimer.png" alt="." width={40} />
+      </span>
       <Modal
         className="font-['Helvetica']"
         centered

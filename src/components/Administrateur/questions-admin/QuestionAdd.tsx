@@ -1,5 +1,3 @@
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import {
   Button,
@@ -70,9 +68,13 @@ const QuestionAdd = (props: QuestionAddPropsType) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpened(true)}>
-        <FontAwesomeIcon icon={faAdd} color="white" beatFade size="2xl" />
-      </Button>
+     <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
+        <img
+          src="/image/small-icons/bouton-ajouter.png"
+          alt="."
+          width={40}
+        />
+      </span>
       <Modal
         centered
         scrollable

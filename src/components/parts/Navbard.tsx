@@ -152,7 +152,7 @@ function Navbard() {
             style={{
               textDecoration: "none",
               color: "white",
-              fontSize: 18,
+              fontSize: 20,
               marginRight: 10,
             }}
           >

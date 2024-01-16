@@ -40,7 +40,7 @@ const UsersTable = (props: Props) => {
         <UserAdd refresh={() => getUsers(setUsers)} />
       </div>
       <br />
-      <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 590 }}>
+      <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 420 }}>
         <Table bordered responsive hover>
           <thead>
             <tr>

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ButtonGroup, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
-import { getAdminusers } from "../../../actions/Adminusers/action";
 import Supadmin from "../../../@types/Supadmin";
 import { getSupadmins } from "../../../actions/Supadmin/action";
 import SupadminAdd from "./SupadminAdd";

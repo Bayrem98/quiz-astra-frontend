@@ -32,7 +32,7 @@ const AdminusersTable = (props: Props) => {
           <AdminuserAdd refresh={() => getAdminusers(setAdminusers)} />
         </div>
         <br />
-        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 590 }}>
+        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 535 }}>
           <Table bordered responsive hover>
             <thead>
               <tr>

@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import {
   Button,
   Form,
@@ -65,9 +65,13 @@ const SupadminAdd = (props: SupadminAddAddPropsType) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpened(true)}>
-        <FontAwesomeIcon icon={faAdd} color="white" beatFade size="2xl" />
-      </Button>
+      <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
+        <img
+          src="/image/small-icons/ajouter-un-utilisateur.png"
+          alt="."
+          width={40}
+        />
+      </span>
       <Modal
         centered
         scrollable

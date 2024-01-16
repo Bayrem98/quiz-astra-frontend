@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, ButtonGroup, Input, Table } from "reactstrap";
+import { ButtonGroup, Input, Table } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import User from "../../../@types/User";
 import { getUsers } from "../../../actions/Users/action";
 import { Link } from "react-router-dom";
-import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 interface Props {}
 
@@ -50,7 +49,7 @@ const RecapAllUsers = (props: Props) => {
               <tr>
                 <th>Nom d'utilisateur</th>
                 <th>Note-global</th>
-                <th style={{ textAlign: "center" }}>Action</th>
+                <th style={{ textAlign: "center" }}>Voir</th>
               </tr>
             </thead>
             <tbody>
@@ -68,14 +67,7 @@ const RecapAllUsers = (props: Props) => {
                       <td style={{ textAlign: "center" }}>
                         <ButtonGroup>
                           <Link to={`/recaponeuser/${user._id}`}>
-                            <Button>
-                              <FontAwesomeIcon
-                                icon={faEye}
-                                color="white"
-                                beat
-                                size="xl"
-                              />
-                            </Button>
+                            <img src="/image/small-icons/vues.png" alt="." width={60} />
                           </Link>
                         </ButtonGroup>
                       </td>

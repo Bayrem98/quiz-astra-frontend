@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Question from "../../../@types/Question";
 import { deleteQuestions } from "../../../actions/Questions/action";
@@ -22,9 +20,9 @@ const QuestionDelete = ({ question, refresh }: BookDeletePropsType) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpened(true)} color="danger">
-        <FontAwesomeIcon icon={faTrash} />
-      </Button>
+      <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
+        <img src="/image/small-icons/supprimer.png" alt="." width={40} />
+      </span>
       <Modal
         className="font-['Helvetica']"
         centered
