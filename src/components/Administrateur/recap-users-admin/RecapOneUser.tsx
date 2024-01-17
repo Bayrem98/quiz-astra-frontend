@@ -190,7 +190,7 @@ const RecapOneUser = () => {
         >
           <h3 style={{ color: "white" }}>
             Recap Tous Les Quiz pour{" "}
-            <span style={{ color: "red", textDecoration: "underline" }}>
+            <span className="animated-gradient-text3">
               {user._id && user.username}
             </span>
           </h3>
@@ -217,6 +217,7 @@ const RecapOneUser = () => {
                   <th>Categorie</th>
                   <th>Question</th>
                   <th>Réponse</th>
+                  <th>Date</th>
                   <th>Correction</th>
                   <th>Note</th>
                   <th style={{ textAlign: "center" }}>Correcteur</th>
@@ -230,6 +231,7 @@ const RecapOneUser = () => {
                       <td>{response.category}</td>
                       <td>{response.question}</td>
                       <td>{response.value}</td>
+                      <td>{response.date}</td>
                       <td>
                         <Input
                           type="text"

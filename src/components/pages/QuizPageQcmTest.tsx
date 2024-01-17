@@ -64,6 +64,15 @@ const QuizPageQcmTest = () => {
     }));
   };
 
+  const date = new Date();
+  const formattedDateTime = date.toLocaleString("fr-FR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
   const handleSaveAnswers = () => {
     const accessToken = localStorage.getItem("access_token");
 
@@ -87,6 +96,7 @@ const QuizPageQcmTest = () => {
             correctionQuestion: "",
             note: 0,
             correcteur: "",
+            date: formattedDateTime ?? "",
           })
         );
 

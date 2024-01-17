@@ -7,4 +7,5 @@ export default interface QuizResponse {
   correctionQuestion?: string;
   note?: number;
   correcteur?: string;
+  date?: string;
 }

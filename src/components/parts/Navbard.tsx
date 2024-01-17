@@ -163,6 +163,7 @@ function Navbard() {
               alt="."
               width={38}
             />
+            <span style={{fontSize: 18}}>Compte</span>
           </DropdownToggle>
           <DropdownMenu end>
             <DropdownItem>

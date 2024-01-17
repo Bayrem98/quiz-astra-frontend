@@ -48,6 +48,16 @@ const QuizPageQrTest = () => {
     }));
   };
 
+  const date = new Date();
+  const formattedDateTime = date.toLocaleString("fr-FR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+
+
   const handleSaveAnswers = () => {
     // Obtenez le token d'authentification depuis le stockage local
     const accessToken = localStorage.getItem("access_token");
@@ -76,6 +86,7 @@ const QuizPageQrTest = () => {
             value: selectedAnswers[questionId],
             correctionQuestion: "",
             note: 0,
+            date: formattedDateTime ?? "",
           })
         );
 

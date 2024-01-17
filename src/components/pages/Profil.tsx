@@ -87,6 +87,7 @@ const Profil = () => {
                       <th>Catégorie</th>
                       <th>Question</th>
                       <th>Réponse</th>
+                      <th>Date</th>
                       <th>Correction</th>
                     </tr>
                   </thead>
@@ -97,6 +98,7 @@ const Profil = () => {
                         <td>{response.category}</td>
                         <td>{response.question}</td>
                         <td>{response.value}</td>
+                        <td>{response.date}</td>
                         <td>{response.correctionQuestion}</td>
                       </tr>
                     ))}
