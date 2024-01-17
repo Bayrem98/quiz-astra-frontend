@@ -17,6 +17,8 @@ import QuizPageQrTest from "./components/pages/QuizPageQrTest";
 import RecapAllUsers from "./components/Administrateur/recap-users-admin/RecapAllUsers";
 import RecapOneUser from "./components/Administrateur/recap-users-admin/RecapOneUser";
 import SupadminsTable from "./components/Administrateur/supadmin/SupadminTable";
+import Notifications from "./components/pages/Notifications";
+import { ToastContainer } from "react-toastify";
 
 enum WebsiteRoute {
   LOGIN = "/",
@@ -32,6 +34,7 @@ enum WebsiteRoute {
   PROFIL = "/profil/:userId",
   RECAP_ALL_USERS = "/recapallusers",
   RECAP_ONE_USER = "/recaponeuser/:userId",
+  NOTIFICATIONS = "/notifications",
 }
 
 function App() {
@@ -45,6 +48,7 @@ function App() {
         <>
           <Navbard />
           <div>
+            <ToastContainer />
             <Routes>
               <Route path={WebsiteRoute.HOME} element={<Home />} />
               <Route path={WebsiteRoute.HOME_QUIZ} element={<AccueilQuiz />} />
@@ -89,6 +93,10 @@ function App() {
             <Route
               path={WebsiteRoute.RECAP_ONE_USER}
               element={<RecapOneUser />}
+            />
+            <Route
+              path={WebsiteRoute.NOTIFICATIONS}
+              element={<Notifications />}
             />
           </Routes>
         </>

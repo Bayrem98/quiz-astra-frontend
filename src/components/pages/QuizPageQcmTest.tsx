@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import QuizResponse from "../../@types/QuizResponse";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const QuizPageQcmTest = () => {
   let { categ } = useParams();
@@ -73,6 +75,13 @@ const QuizPageQcmTest = () => {
     minute: "numeric",
   });
 
+  const showToastMessage = () => {
+    toast.warning(
+      "Si vous pouvez jouer un autre Quiz il faut que déconnecter et reconnecter de nouveau!",
+      {autoClose: 50000,}
+    );
+  };
+
   const handleSaveAnswers = () => {
     const accessToken = localStorage.getItem("access_token");
 
@@ -128,6 +137,7 @@ const QuizPageQcmTest = () => {
       );
     }
     navigateto("/accueilquiz");
+    showToastMessage();
   };
 
   const navigateto = useNavigate();

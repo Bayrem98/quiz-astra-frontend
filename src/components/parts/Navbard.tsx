@@ -97,7 +97,7 @@ function Navbard() {
               }}
             >
               <img src="/image/small-icons/examen.png" alt="." width={36} />
-              Profil
+              Correction Quiz
             </NavLink>
           )}
 
@@ -163,7 +163,7 @@ function Navbard() {
               alt="."
               width={38}
             />
-            <span style={{fontSize: 18}}>Compte</span>
+            <span style={{ fontSize: 18 }}>Compte</span>
           </DropdownToggle>
           <DropdownMenu end>
             <DropdownItem>
@@ -171,7 +171,7 @@ function Navbard() {
                 <img
                   src="/image/small-icons/utilisateur.png"
                   alt="."
-                  width={30}
+                  width={32}
                 />
                 <span
                   className="animated-gradient-text2"
@@ -188,6 +188,24 @@ function Navbard() {
             </DropdownItem>
             <DropdownItem>
               <NavLink
+                to={"/notifications"}
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                }}
+              >
+                <span className="">
+                  <img
+                    src="/image/small-icons/notification.png"
+                    alt="."
+                    width={33}
+                  />
+                </span>
+                Notification
+              </NavLink>
+            </DropdownItem>
+            <DropdownItem>
+              <NavLink
                 to={"#"}
                 style={{
                   textDecoration: "none",
@@ -199,7 +217,7 @@ function Navbard() {
                   <img
                     src="/image/small-icons/se-deconnecter.png"
                     alt="."
-                    width={33}
+                    width={34}
                   />
                 </span>
                 Déconnexion

@@ -87,7 +87,7 @@ const Profil = () => {
                       <th>Catégorie</th>
                       <th>Question</th>
                       <th>Réponse</th>
-                      <th>Date</th>
+                      <th>Date & Heure</th>
                       <th>Correction</th>
                     </tr>
                   </thead>
