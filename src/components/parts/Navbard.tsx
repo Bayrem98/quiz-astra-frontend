@@ -196,12 +196,12 @@ function Navbard() {
               >
                 <span className="">
                   <img
-                    src="/image/small-icons/notification.png"
+                    src="/image/small-icons/diagramme-de-gantt.png"
                     alt="."
-                    width={33}
+                    width={34}
                   />
                 </span>
-                Notification
+                Diagramme
               </NavLink>
             </DropdownItem>
             <DropdownItem>
