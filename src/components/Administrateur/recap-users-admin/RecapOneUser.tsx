@@ -106,7 +106,7 @@ const RecapOneUser = () => {
       .catch((error) => {
         console.log("Erreur Correction :", error);
       });
-      scheduleRefresh();
+    scheduleRefresh();
   };
 
   const refresh = () => {
@@ -249,7 +249,9 @@ const RecapOneUser = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={6}>Aucune réponse de quiz disponible.</td>
+                    <td colSpan={8} style={{ textAlign: "center" }}>
+                      Aucune réponse de quiz disponible.
+                    </td>
                   </tr>
                 )}
               </tbody>

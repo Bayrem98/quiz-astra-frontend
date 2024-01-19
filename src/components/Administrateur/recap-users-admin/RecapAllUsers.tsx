@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { ButtonGroup, Input, Table } from "reactstrap";
+import {
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardHeader,
+  Input,
+  Table,
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import User from "../../../@types/User";
@@ -41,6 +48,24 @@ const RecapAllUsers = (props: Props) => {
               onChange={(e) => setFilter(e.target.value)}
             />
           </div>
+          <div>
+            <Card style={{ width: 248, height: 90 }}>
+              <CardHeader style={{  textAlign: "center" }}>
+                <img src="/image/small-icons/notification.png" alt="." width={20} style={{marginTop: -5, marginRight: 5}} />
+                Information
+              </CardHeader>
+              <CardBody>
+                <div style={{ marginTop: -10, fontSize: 12 }}>
+                  <span>/=</span>
+                  <span> pas de quiz disponible</span>
+                </div>
+                <div style={{ fontSize: 11 }}>
+                  <span>/10=</span>
+                  <span> quiz disponible mais pas de correction</span>
+                </div>
+              </CardBody>
+            </Card>
+          </div>
         </div>
         <br />
         <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 595 }}>
@@ -69,7 +94,11 @@ const RecapAllUsers = (props: Props) => {
                       <td style={{ textAlign: "center" }}>
                         <ButtonGroup>
                           <Link to={`/recaponeuser/${user._id}`}>
-                            <img src="/image/small-icons/vues.png" alt="." width={60} />
+                            <img
+                              src="/image/small-icons/vues.png"
+                              alt="."
+                              width={60}
+                            />
                           </Link>
                         </ButtonGroup>
                       </td>
