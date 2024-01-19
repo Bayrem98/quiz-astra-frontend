@@ -12,7 +12,7 @@ const RecapOneUser = () => {
   const [user, setUser] = useState<User>();
   const [correction, setCorrection] = useState<{ [key: string]: string }>({});
   const [note, setNote] = useState<{ [key: string]: number }>({});
-  const [correcteur, setCorrecteur] = useState<{ [key: string]: string }>({});
+  const [correcteur, setCorrecteur] = useState<string>("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,11 +26,7 @@ const RecapOneUser = () => {
         // Initialiser correction et note avec les valeurs stockées en local storage
         const storedCorrection = localStorage.getItem(`correction-${userId}`);
         const storedNote = localStorage.getItem(`note-${userId}`);
-        const storedCorrecteur = localStorage.getItem(`correcteur-${userId}`);
 
-        const initialCorrecteur: { [key: string]: string } = storedCorrecteur
-          ? JSON.parse(storedCorrecteur)
-          : {};
         const initialCorrection: { [key: string]: string } = storedCorrection
           ? JSON.parse(storedCorrection)
           : {};
@@ -49,8 +45,6 @@ const RecapOneUser = () => {
             initialNote[response.question] =
               response.note || initialNote[response.question] || 0;
             totalNote += response.note || 0; // Add each note to the totalNote
-            initialCorrecteur[response.question] =
-              response.correcteur || initialCorrecteur[response.question] || "";
           });
         }
 
@@ -60,6 +54,7 @@ const RecapOneUser = () => {
         // Update the user object with the totalNote
         const updatedUser = {
           ...response.data,
+          correcteur: correcteur,
           noteGlobal: totalNote,
         };
         setUser(updatedUser);
@@ -91,12 +86,12 @@ const RecapOneUser = () => {
 
     const updatedUser = {
       ...user,
+      correcteur: correcteur,
       noteGlobal: totalNote,
       quizResponses: user.quizResponses.map((response) => ({
         ...response,
         correctionQuestion: correction[response.question],
         note: note[response.question],
-        correcteur: correcteur[response.question],
       })),
     };
     console.log(updatedUser);
@@ -111,7 +106,7 @@ const RecapOneUser = () => {
       .catch((error) => {
         console.log("Erreur Correction :", error);
       });
-    scheduleRefresh();
+      scheduleRefresh();
   };
 
   const refresh = () => {
@@ -122,21 +117,6 @@ const RecapOneUser = () => {
     setTimeout(() => {
       refresh();
     }, 2000); // 60000 millisecondes équivalent à 1 minute
-  };
-
-  const onCorrecteur = (
-    event: ChangeEvent<HTMLInputElement>,
-    question: string
-  ) => {
-    const updatedCorrecteur = {
-      ...correcteur,
-      [question]: event.target.value,
-    };
-    setCorrecteur(updatedCorrecteur);
-    localStorage.setItem(
-      `correcteur-${userId}`,
-      JSON.stringify(updatedCorrecteur)
-    );
   };
 
   const onCorrectionChange = (
@@ -167,6 +147,12 @@ const RecapOneUser = () => {
     console.log("Updated Note:", updatedNote); // Debugging statement
     setNote(updatedNote);
     localStorage.setItem(`note-${userId}`, JSON.stringify(updatedNote));
+  };
+
+  const onCorrecteurChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    console.log("Correcteur Value Change:", value);
+    setCorrecteur(value);
   };
 
   return (
@@ -201,7 +187,7 @@ const RecapOneUser = () => {
           </span>
           <Button
             className="animated-gradient-button-quiz"
-            style={{borderRadius: 50}}
+            style={{ borderRadius: 50 }}
             onClick={handelCorrectionResponses}
           >
             <FontAwesomeIcon icon={faSave} color="white" beatFade size="2xl" />
@@ -254,8 +240,8 @@ const RecapOneUser = () => {
                         <td colSpan={1}>
                           <Input
                             type="text"
-                            value={correcteur[response.question] || ""}
-                            onChange={(e) => onCorrecteur(e, response.question)}
+                            value={correcteur}
+                            onChange={onCorrecteurChange}
                           />
                         </td>
                       ) : null}

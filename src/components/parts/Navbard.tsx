@@ -186,24 +186,26 @@ function Navbard() {
                 </span>
               </span>
             </DropdownItem>
-            <DropdownItem>
-              <NavLink
-                to={"/notifications"}
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
-              >
-                <span className="">
-                  <img
-                    src="/image/small-icons/diagramme-de-gantt.png"
-                    alt="."
-                    width={34}
-                  />
-                </span>
-                Diagramme
-              </NavLink>
-            </DropdownItem>
+            {supAdmin &&  (
+              <DropdownItem>
+                <NavLink
+                  to={"/notifications"}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                  }}
+                >
+                  <span className="">
+                    <img
+                      src="/image/small-icons/diagramme-de-gantt.png"
+                      alt="."
+                      width={34}
+                    />
+                  </span>
+                  Diagramme
+                </NavLink>
+              </DropdownItem>
+            )}
             <DropdownItem>
               <NavLink
                 to={"#"}

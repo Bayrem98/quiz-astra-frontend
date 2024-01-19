@@ -6,6 +6,5 @@ export default interface QuizResponse {
   value?: string;
   correctionQuestion?: string;
   note?: number;
-  correcteur?: string;
   date?: string;
 }

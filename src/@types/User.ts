@@ -6,4 +6,5 @@ export default interface User {
   password: string;
   quizResponses?: QuizResponse[];
   noteGlobal?: number;
+  correcteur?: string;
 }

@@ -49,6 +49,7 @@ const RecapAllUsers = (props: Props) => {
               <tr>
                 <th>Nom d'utilisateur</th>
                 <th>Note-global</th>
+                <th>Correcteur</th>
                 <th style={{ textAlign: "center" }}>Voir</th>
               </tr>
             </thead>
@@ -64,6 +65,7 @@ const RecapAllUsers = (props: Props) => {
                       <td style={{ fontWeight: "bold" }}>
                         {user.noteGlobal}/{user.quizResponses?.length}
                       </td>
+                      <td>{user.correcteur}</td>
                       <td style={{ textAlign: "center" }}>
                         <ButtonGroup>
                           <Link to={`/recaponeuser/${user._id}`}>
@@ -75,7 +77,7 @@ const RecapAllUsers = (props: Props) => {
                   ))
               ) : (
                 <tr>
-                  <td colSpan={3} className="text-center">
+                  <td colSpan={4} className="text-center">
                     <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                     <br />
                     Pas des données...

@@ -104,7 +104,6 @@ const QuizPageQcmTest = () => {
             value: selectedAnswers[questionId],
             correctionQuestion: "",
             note: 0,
-            correcteur: "",
             date: formattedDateTime ?? "",
           })
         );
