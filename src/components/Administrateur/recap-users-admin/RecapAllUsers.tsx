@@ -49,19 +49,25 @@ const RecapAllUsers = (props: Props) => {
             />
           </div>
           <div>
-            <Card style={{ width: 248, height: 90 }}>
-              <CardHeader style={{  textAlign: "center" }}>
-                <img src="/image/small-icons/notification.png" alt="." width={20} style={{marginTop: -5, marginRight: 5}} />
+            <Card style={{ width: 200, height: 110 }}>
+              <CardHeader style={{ textAlign: "center" }}>
+                <img
+                  src="/image/small-icons/notification.png"
+                  alt="."
+                  width={20}
+                  style={{ marginTop: -5, marginRight: 5 }}
+                />
                 Information
               </CardHeader>
               <CardBody>
-                <div style={{ marginTop: -10, fontSize: 12 }}>
-                  <span>/=</span>
+                <div style={{ marginTop: -10, fontSize: 13 }}>
+                  <span>*Quiz a 10 questions</span>
+                  <br />
+                  <span>/ : </span>
                   <span> pas de quiz disponible</span>
-                </div>
-                <div style={{ fontSize: 11 }}>
-                  <span>/10=</span>
-                  <span> quiz disponible mais pas de correction</span>
+                  <br />
+                  <span>/10 : </span>
+                  <span>manque correction</span>
                 </div>
               </CardBody>
             </Card>
@@ -73,7 +79,7 @@ const RecapAllUsers = (props: Props) => {
             <thead>
               <tr>
                 <th>Nom d'utilisateur</th>
-                <th>Note-global</th>
+                <th>Quiz & Note-global</th>
                 <th>Correcteur</th>
                 <th style={{ textAlign: "center" }}>Voir</th>
               </tr>
@@ -88,6 +94,19 @@ const RecapAllUsers = (props: Props) => {
                     <tr key={user._id}>
                       <td>{user.username}</td>
                       <td style={{ fontWeight: "bold" }}>
+                        {user.quizResponses &&
+                          user.quizResponses.length > 0 && (
+                            <div key={user._id}>
+                              {user.quizResponses[0]?.quizType}-
+                              {user.quizResponses[0]?.category}
+                              <br />
+                              {user.quizResponses[10]?.quizType}-
+                              {user.quizResponses[10]?.category}
+                              <br />
+                              {user.quizResponses[20]?.quizType}-
+                              {user.quizResponses[20]?.category}
+                            </div>
+                          )}
                         {user.noteGlobal}/{user.quizResponses?.length}
                       </td>
                       <td>{user.correcteur}</td>
@@ -109,7 +128,7 @@ const RecapAllUsers = (props: Props) => {
                   <td colSpan={4} className="text-center">
                     <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                     <br />
-                    Pas des données...
+                    Pas de données...
                   </td>
                 </tr>
               )}
