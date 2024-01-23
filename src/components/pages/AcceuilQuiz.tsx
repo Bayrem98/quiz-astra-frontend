@@ -12,9 +12,8 @@ const AccueilQuiz = () => {
   return (
     <>
       <div
+      className="background-app"
         style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
           paddingTop: 90,
         }}
       >

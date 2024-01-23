@@ -83,3 +83,18 @@
         background-position: 0% 50%;
     }
 }
+
+.background-app {
+    background: transparent url(/public/image/background\ image.png) repeat 0 0;
+    background-size: auto;
+    animation: scrollBackground 10s linear infinite; /* ajustez la durée selon vos besoins */
+}
+
+@keyframes scrollBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}

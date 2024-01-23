@@ -3,13 +3,7 @@ import { Card, CardBody, CardHeader } from "reactstrap";
 const Home = () => {
   return (
     <>
-      <div
-        className="d-flex justify-content-center"
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app d-flex justify-content-center">
         <Card
           outline
           style={{
@@ -30,7 +24,9 @@ const Home = () => {
               fontSize: 28,
             }}
           >
-            <h1 className="animated-gradient-text-home">DESCRIPTION NOTRE APPLICATION</h1>
+            <h1 className="animated-gradient-text-home">
+              DESCRIPTION NOTRE APPLICATION
+            </h1>
           </CardHeader>
           <CardBody>
             Notre application de quiz est conçue pour les amateurs de culture

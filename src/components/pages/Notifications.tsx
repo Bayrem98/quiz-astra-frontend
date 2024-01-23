@@ -117,12 +117,7 @@ const Notifications = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app">
         <h4 style={{ paddingTop: 90, color: "white", textAlign: "center" }}>
           Diagrame pour les questions pour chaque catégorie par typeQuiz
         </h4>
