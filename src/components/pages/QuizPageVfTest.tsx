@@ -149,16 +149,15 @@ const QuizPageVfTest = () => {
   return (
     <>
       <div
+      className="background-app"
         style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
           paddingBottom: 50,
         }}
       >
         <img
-           src="/image/small-icons/fleche-gauche.png"
-           alt="."
-           width={38}
+          src="/image/small-icons/fleche-gauche.png"
+          alt="."
+          width={38}
           onClick={() => navigate(-1)}
           style={{ cursor: "pointer", marginLeft: 10, marginTop: 80 }}
         />

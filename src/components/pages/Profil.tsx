@@ -36,12 +36,7 @@ const Profil = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app">
         <img
           src="/image/small-icons/fleche-gauche.png"
           alt="."

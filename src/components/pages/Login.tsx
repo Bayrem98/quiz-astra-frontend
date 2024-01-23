@@ -98,12 +98,7 @@ function Login() {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app">
         <div
           style={{
             display: "flex",

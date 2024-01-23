@@ -78,7 +78,7 @@ const QuizPageQcmTest = () => {
   const showToastMessage = () => {
     toast.warning(
       "Si vous pouvez jouer un autre Quiz il faut que déconnecter et reconnecter de nouveau!",
-      {autoClose: 50000,}
+      { autoClose: 50000 }
     );
   };
 
@@ -149,9 +149,8 @@ const QuizPageQcmTest = () => {
   return (
     <>
       <div
+        className="background-app"
         style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
           paddingBottom: 50,
         }}
       >
