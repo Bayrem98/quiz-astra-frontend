@@ -67,7 +67,7 @@ const RecapOneUser = () => {
     };
 
     fetchUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   if (!user) {
@@ -158,12 +158,7 @@ const RecapOneUser = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app">
         <img
           src="/image/small-icons/fleche-gauche.png"
           alt="."

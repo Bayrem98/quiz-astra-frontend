@@ -24,12 +24,7 @@ const RecapAllUsers = (props: Props) => {
   }, []);
 
   return (
-    <div
-      style={{
-        backgroundImage: "url(/image/background-home.jpg)",
-        backgroundSize: "cover",
-      }}
-    >
+    <div className="background-app">
       <div
         className="users-table-container"
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}

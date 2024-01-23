@@ -19,12 +19,7 @@ const QuestionsTable = (props: Props) => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(/image/background-home.jpg)",
-          backgroundSize: "cover",
-        }}
-      >
+      <div className="background-app">
         <div
           className="d-flex justify-content-between"
           style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
