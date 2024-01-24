@@ -92,13 +92,16 @@ const RecapAllUsers = (props: Props) => {
                         {user.quizResponses &&
                           user.quizResponses.length > 0 && (
                             <div key={user._id}>
-                              {user.quizResponses[0]?.quizType}-
+                              {user.quizResponses[0]?.quizType}
+                              -
                               {user.quizResponses[0]?.category}
                               <br />
-                              {user.quizResponses[10]?.quizType}-
+                              {user.quizResponses[10]?.quizType}
+                              -
                               {user.quizResponses[10]?.category}
                               <br />
-                              {user.quizResponses[20]?.quizType}-
+                              {user.quizResponses[20]?.quizType}
+                              -
                               {user.quizResponses[20]?.category}
                             </div>
                           )}

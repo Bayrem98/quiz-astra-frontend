@@ -26,6 +26,7 @@ const RecapOneUser = () => {
         // Initialiser correction et note avec les valeurs stockées en local storage
         const storedCorrection = localStorage.getItem(`correction-${userId}`);
         const storedNote = localStorage.getItem(`note-${userId}`);
+        const storedCorrecteur = localStorage.getItem(`correcteur-${userId}`);
 
         const initialCorrection: { [key: string]: string } = storedCorrection
           ? JSON.parse(storedCorrection)
@@ -154,6 +155,7 @@ const RecapOneUser = () => {
     const value = e.target.value;
     console.log("Correcteur Value Change:", value);
     setCorrecteur(value);
+    localStorage.setItem(`correcteur-${userId}`, JSON.stringify(value));
   };
 
   return (
@@ -235,6 +237,8 @@ const RecapOneUser = () => {
                       {responseIndex === 0 ? (
                         <td colSpan={1}>
                           <Input
+                            name="correcteur"
+                            id="correcteur"
                             type="text"
                             value={correcteur}
                             onChange={onCorrecteurChange}
