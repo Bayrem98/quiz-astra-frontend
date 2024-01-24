@@ -87,7 +87,7 @@
 .background-app {
     background: transparent url(/public/image/background\ image.png) repeat 0 0;
     background-size: auto;
-    animation: scrollBackground 15s linear infinite; /* ajustez la durée selon vos besoins */
+    animation: scrollBackground 15s linear infinite;
 }
 
 @keyframes scrollBackground {

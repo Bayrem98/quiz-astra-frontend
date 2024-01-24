@@ -117,13 +117,13 @@ const Notifications = () => {
 
   return (
     <>
-      <div className="background-app">
+      <div className="background-app" style={{ height: "100vh" }}>
         <h4 style={{ paddingTop: 90, color: "white", textAlign: "center" }}>
           Diagrame pour les questions pour chaque catégorie par typeQuiz
         </h4>
         <div
           className="d-flex justify-content-center"
-          style={{ paddingTop: 80, paddingBottom: 190 }}
+          style={{ paddingTop: 80}}
         >
           <Card
             style={{
