@@ -17,7 +17,7 @@ const AdminusersTable = (props: Props) => {
   }, []);
 
   return (
-    <div className="background-app">
+    <div className="background-app" style={{ height: "100vh" }}>
       <div
         className="users-table-container"
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
@@ -27,7 +27,7 @@ const AdminusersTable = (props: Props) => {
           <AdminuserAdd refresh={() => getAdminusers(setAdminusers)} />
         </div>
         <br />
-        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 535 }}>
+        <div style={{ marginLeft: 50, marginRight: 50 }}>
           <Table bordered responsive hover>
             <thead>
               <tr>

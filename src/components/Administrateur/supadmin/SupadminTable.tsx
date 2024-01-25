@@ -17,7 +17,7 @@ const SupadminsTable = (props: Props) => {
   }, []);
 
   return (
-    <div className="background-app">
+    <div className="background-app" style={{ height: "100vh" }}>
       <div
         className="users-table-container"
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
@@ -27,7 +27,7 @@ const SupadminsTable = (props: Props) => {
           <SupadminAdd refresh={() => getSupadmins(setSupadmins)} />
         </div>
         <br />
-        <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 590 }}>
+        <div style={{ marginLeft: 50, marginRight: 50 }}>
           <Table bordered responsive hover>
             <thead>
               <tr>
